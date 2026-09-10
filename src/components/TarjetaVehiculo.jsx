@@ -1,6 +1,8 @@
+import './TarjetaVehiculo.css'
+
 function TarjetaVehiculo(props) {
   return (
-    <div>
+    <div className="tarjeta-vehiculo">
       <h3>{props.marca} {props.modelo}</h3>
       <p>Año: {props.year}</p>
       <p>Precio: ${props.precio}</p>
