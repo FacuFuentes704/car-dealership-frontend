@@ -1,20 +1,24 @@
 :root {
-  --bg: #ffffff;
-  --text: #201e1e;
-  --card-bg: #f8f8f8;
-  --border: #e0e0e0;
+  --bg: #fbfaf8;
+  --text: #141313;
+  --card-bg: #ffffff;
+  --border: #e4e2df;
   --primario: #ed3237;
+  --primario-oscuro: #b81f24;
   --disponible: #2e7d32;
   --reservado: #f9a825;
   --vendido: #ed3237;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
 }
 
 .modo-oscuro {
-  --bg: #16171d;
-  --text: #f0f0f0;
-  --card-bg: #22232b;
-  --border: #333333;
+  --bg: #141313;
+  --text: #f4f2ef;
+  --card-bg: #1e1d1c;
+  --border: #33312f;
   --primario: #ed3237;
+  --primario-oscuro: #ff5459;
   --disponible: #4caf50;
   --reservado: #ffca28;
   --vendido: #ed3237;
@@ -27,14 +31,14 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: var(--font-body);
   background-color: var(--bg);
   color: var(--text);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-#root {
+.container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 32px;
 }

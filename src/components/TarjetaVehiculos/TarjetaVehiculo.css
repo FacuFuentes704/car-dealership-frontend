@@ -1,39 +1,79 @@
+.tarjeta-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .tarjeta-vehiculo {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px;
-  margin: 10px;
-  max-width: 300px;
   background-color: var(--card-bg);
-  color: var(--text);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
 }
 
-.tarjeta-vehiculo h3 {
-  margin: 0 0 10px 0;
-  color: var(--text);
+.tarjeta-link:hover .tarjeta-vehiculo {
+  border-color: var(--primario);
 }
 
-.tarjeta-vehiculo p {
-  margin: 4px 0;
-  color: var(--text);
-  opacity: 0.8;
+.tarjeta-imagen {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.tarjeta-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-link:hover .tarjeta-imagen img {
+  transform: scale(1.05);
 }
 
 .sin-foto {
-  background-color: var(--border);
-  height: 150px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  background-color: var(--border);
   opacity: 0.6;
 }
 
-.tarjeta-vehiculo img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 10px;
+.tarjeta-precio {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background-color: var(--primario);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  padding: 6px 12px;
+}
+
+.tarjeta-info {
+  padding: 18px 20px;
+}
+
+.tarjeta-info h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.tarjeta-specs {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  opacity: 0.65;
+}
+
+.tarjeta-specs span:last-child {
+  padding-left: 12px;
+  border-left: 1px solid var(--border);
 }

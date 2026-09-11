@@ -6,18 +6,26 @@ function TarjetaVehiculo(props) {
   const fotoPrincipal = fotos.find((foto) => foto.is_main === true)
 
   return (
-    <Link to={`/vehiculo/${props.id}`}>
-      <div className="tarjeta-vehiculo">
-        {fotoPrincipal ? (
-          <img src={fotoPrincipal.url} alt={`${props.marca} ${props.modelo}`} />
-        ) : (
-          <div className="sin-foto">Sin foto</div>
-        )}
-        <h3>{props.marca} {props.modelo}</h3>
-        <p>Año: {props.year}</p>
-        <p>Precio: ${props.precio}</p>
-        <p>Km: {props.km}</p>
-      </div>
+    <Link to={`/vehiculo/${props.id}`} className="tarjeta-link">
+      <article className="tarjeta-vehiculo">
+        <div className="tarjeta-imagen">
+          {fotoPrincipal ? (
+            <img src={fotoPrincipal.url} alt={`${props.marca} ${props.modelo}`} />
+          ) : (
+            <div className="sin-foto">Sin foto</div>
+          )}
+          <span className="tarjeta-precio">
+            ${Number(props.precio).toLocaleString('es-AR')}
+          </span>
+        </div>
+        <div className="tarjeta-info">
+          <h3>{props.marca} {props.modelo}</h3>
+          <p className="tarjeta-specs">
+            <span>{props.year}</span>
+            <span>{Number(props.km).toLocaleString('es-AR')} km</span>
+          </p>
+        </div>
+      </article>
     </Link>
   )
 }

@@ -5,7 +5,7 @@ function Header() {
   return (
     <header className="header">
       <Link to="/" className="header-logo">
-        LGi Motors
+        <span className="logo-lgi">LGi</span> <span className="logo-motors">Motors</span>
       </Link>
     </header>
   )
