@@ -29,3 +29,11 @@
   margin-bottom: 10px;
   opacity: 0.6;
 }
+
+.tarjeta-vehiculo img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}

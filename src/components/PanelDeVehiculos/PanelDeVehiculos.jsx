@@ -1,4 +1,4 @@
-import TarjetaVehiculo from './TarjetaVehiculo'
+import TarjetaVehiculo from '../TarjetaVehiculos/TarjetaVehiculo'
 import { useEffect, useState } from "react"
 import './PanelDeVehiculos.css'
 
