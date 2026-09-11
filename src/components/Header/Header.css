@@ -1,0 +1,26 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  padding: 18px 32px;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.logo-lgi {
+  color: var(--text);
+}
+
+.logo-motors {
+  color: var(--primario);
+}
