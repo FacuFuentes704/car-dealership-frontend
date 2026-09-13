@@ -1,6 +1,7 @@
 import Hero from '../Hero/Hero'
 import PanelDeVehiculos from '../PanelDeVehiculos/PanelDeVehiculos'
 import './Home.css'
+import PorQueElegirnos from '../PorQueElegirnos/PorQueElegirnos'
 
 function Home() {
   return (
@@ -10,6 +11,7 @@ function Home() {
         <h2 className="catalogo-title">Vehículos disponibles</h2>
         <PanelDeVehiculos />
       </section>
+      <PorQueElegirnos />
     </div>
   )
 }

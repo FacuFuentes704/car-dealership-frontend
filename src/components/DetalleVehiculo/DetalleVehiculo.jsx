@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
+import BotonWhatsApp from "../BotonWhatsapp/BotonWhatsapp"
 
 function DetalleVehiculo() {
   const { id } = useParams()
@@ -40,6 +41,7 @@ function DetalleVehiculo() {
       <p>Combustible: {vehiculo.fuel_type}</p>
       <p>Transmisión: {vehiculo.transmission}</p>
       <p>Descripción: {vehiculo.description}</p>
+      <BotonWhatsApp mensaje={`Hola, me comunico por ${vehiculo.brand} ${vehiculo.model} desde lgimotors.com y quiero saber más detalles`} />
     </div>
   )
 }

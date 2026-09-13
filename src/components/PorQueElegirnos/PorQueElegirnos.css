@@ -1,0 +1,40 @@
+.por-que {
+  padding: 64px 32px;
+  background-color: var(--card-bg);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.por-que h2 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  letter-spacing: -0.01em;
+}
+
+.por-que-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
+}
+
+.por-que-item h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--primario);
+}
+
+.por-que-item p {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+.por-que.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

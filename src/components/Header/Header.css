@@ -4,6 +4,7 @@
   z-index: 50;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 18px 32px;
   background-color: var(--bg);
   border-bottom: 1px solid var(--border);
@@ -22,5 +23,22 @@
 }
 
 .logo-motors {
+  color: var(--primario);
+}
+
+.header-nav {
+  display: flex;
+  gap: 28px;
+}
+
+.header-nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.15s ease;
+}
+
+.header-nav a:hover {
   color: var(--primario);
 }

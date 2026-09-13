@@ -1,8 +1,9 @@
 import PanelDeVehiculos from '../PanelDeVehiculos/PanelDeVehiculos'
 import './PaginaUsados.css'
-import { Link } from 'react-router-dom'
+import BotonWhatsApp from '../BotonWhatsapp/BotonWhatsapp'
 
 function PaginaUsados() {
+  const mensajeWhatsApp = "Hola, me comunico desde lgimotors.com. Estoy interesado en conocer más sobre los vehículos usados disponibles."
   return (
     <div className="pagina-condicion container">
       <h1>Vehículos Usados</h1>
@@ -10,9 +11,7 @@ function PaginaUsados() {
         Todos nuestros usados pasan por una revisión mecánica completa
         antes de estar disponibles para la venta.
       </p>
-      <Link to="/financiacion#0km" className="pagina-condicion-link">
-        Ver opciones de financiación
-      </Link>
+      <BotonWhatsApp mensaje="Hola, me comunico desde lgimotors.com. Estoy interesado en conocer más sobre los vehículos usados disponibles." />
       <PanelDeVehiculos condition="used" />
     </div>
   )
