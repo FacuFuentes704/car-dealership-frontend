@@ -9,8 +9,8 @@ function Hero() {
           Autos de confianza, listos para la ruta.
         </h1>
         <p className="hero-sub">
-          En LGi Motors revisamos cada unidad antes de ofrecerla.
-          Explorá el catálogo y encontrá el auto que estabas buscando.
+          15 años de trayectoria en Venado Tuerto. Más de 50 vehículos en stock,
+          entre todas las marcas y modelos, con financiación propia disponible.
         </p>
         <a href="#catalogo" className="hero-cta">Ver catálogo</a>
       </div>

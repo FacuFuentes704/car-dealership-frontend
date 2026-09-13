@@ -1,0 +1,53 @@
+.financiacion {
+  padding: 48px 32px;
+  max-width: 800px;
+}
+
+.financiacion h1 {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.financiacion-intro {
+  font-size: 17px;
+  line-height: 1.6;
+  opacity: 0.75;
+  margin-bottom: 40px;
+}
+
+.financiacion-seccion {
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.financiacion-seccion h2 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.financiacion-seccion p {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+.financiacion-cta {
+  display: inline-block;
+  background-color: var(--primario);
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 14px 32px;
+  border: 2px solid var(--primario);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.financiacion-cta:hover {
+  background-color: transparent;
+  color: var(--primario);
+}

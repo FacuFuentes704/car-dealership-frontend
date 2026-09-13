@@ -2,16 +2,16 @@ import TarjetaVehiculo from '../TarjetaVehiculos/TarjetaVehiculo'
 import { useEffect, useState } from "react"
 import './PanelDeVehiculos.css'
 
-function PanelDeVehiculos(condition) {
+function PanelDeVehiculos({condition, offer}) {
   const [vehiculos, setVehiculos] = useState([])
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
     setCargando(true)
-    const url = condition
-    ? `https://car-dealership-api-7k16.onrender.com/vehicles/?status=available&condition=${condition}`
-    : `https://car-dealership-api-7k16.onrender.com/vehicles/?status=available`
+    let url = `https://car-dealership-api-7k16.onrender.com/vehicles/?status=available`
+    if (condition) url += `&condition=${condition}`
+    if (offer) url += `&is_offer=true`
 
     fetch(url)
       .then(res => {
@@ -28,7 +28,7 @@ function PanelDeVehiculos(condition) {
         setError(err.message)
         setCargando(false)
       })
-  }, [condition])
+  }, [condition, offer])
 
   if (cargando) return <p>Cargando Vehiculos...</p>
   if (error) return <p>Error: {error}</p>
