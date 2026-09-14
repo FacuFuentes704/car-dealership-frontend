@@ -1,5 +1,6 @@
 import PanelDeVehiculos from '../PanelDeVehiculos/PanelDeVehiculos'
 import './PaginaOfertas.css'
+import BotonWhatsApp from '../BotonWhatsapp/BotonWhatsapp'
 
 function PaginaOfertas() {
   return (
@@ -9,6 +10,7 @@ function PaginaOfertas() {
         Aprovechá nuestras oportunidades por tiempo limitado en vehículos
         seleccionados.
       </p>
+      <BotonWhatsApp mensaje="Hola, me comunico desde lgimotors.com. Estoy interesado en conocer más sobre los vehículos en oferta disponibles." />
       <PanelDeVehiculos offer={true} />
     </div>
   )

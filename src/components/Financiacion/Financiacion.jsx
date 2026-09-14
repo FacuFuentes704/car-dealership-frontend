@@ -1,4 +1,5 @@
 import './Financiacion.css'
+import BotonWhatsApp from '../BotonWhatsapp/BotonWhatsapp'
 
 function Financiacion() {
   return (
@@ -26,15 +27,7 @@ function Financiacion() {
           entregar.
         </p>
       </section>
-
-      <a
-        href="https://wa.me/543462260147"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="financiacion-cta"
-      >
-        Consultanos por WhatsApp
-      </a>
+      <BotonWhatsApp mensaje="Hola, me comunico desde lgimotors.com. Estoy interesado en conocer más sobre los vehículos 0KM disponibles." />
     </div>
   )
 }
