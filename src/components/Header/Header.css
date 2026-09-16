@@ -42,3 +42,18 @@
 .header-nav a:hover {
   color: var(--primario);
 }
+
+.toggle-tema {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  transition: color 0.15s ease;
+}
+
+.toggle-tema:hover {
+  color: var(--primario);
+}

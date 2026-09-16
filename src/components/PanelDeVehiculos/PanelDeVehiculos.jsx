@@ -57,6 +57,7 @@ function PanelDeVehiculos({ condition, offer }) {
               precio={vehiculo.price}
               km={vehiculo.km}
               photos={vehiculo.photos}
+              esOferta={vehiculo.is_offer}
             />
           ))}
         </div>

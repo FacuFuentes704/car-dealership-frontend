@@ -77,3 +77,16 @@
   padding-left: 12px;
   border-left: 1px solid var(--border);
 }
+
+.tarjeta-badge-oferta {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: var(--oferta);
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 5px 10px;
+}

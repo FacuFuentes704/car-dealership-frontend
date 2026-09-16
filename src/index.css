@@ -10,6 +10,7 @@
   --vendido: #ed3237;
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Work Sans', sans-serif;
+  --oferta: #f9a825;
 }
 
 .modo-oscuro {
@@ -22,6 +23,7 @@
   --disponible: #4caf50;
   --reservado: #ffca28;
   --vendido: #ed3237;
+  --oferta: #ffca28;
 }
 
 * {
