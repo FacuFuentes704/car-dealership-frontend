@@ -1,12 +1,10 @@
 import PanelDeVehiculos from '../PanelDeVehiculos/PanelDeVehiculos'
 import './PaginaOfertas.css'
 import BotonWhatsApp from '../BotonWhatsapp/BotonWhatsapp'
-import { useEffect } from 'react'
+import useTitulo from '../../hooks/useTitulo'
 
 function PaginaOfertas() {
-  useEffect(() => {
-  document.title = "Ofertas - LGi Motors"
-}, [])
+  useTitulo("Vehiculos en oferta - LGI Motors")
 
   return (
     <div className="pagina-condicion container">

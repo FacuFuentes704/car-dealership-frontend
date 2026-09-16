@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import BotonWhatsApp from "../BotonWhatsapp/BotonWhatsapp"
 import './DetalleVehiculo.css'
+import { API_URL } from '../../config'
 
 function DetalleVehiculo() {
   const { id } = useParams()
@@ -12,7 +13,7 @@ function DetalleVehiculo() {
   const [fotoActiva, setFotoActiva] = useState(0)
 
   useEffect(() => {
-    fetch(`https://car-dealership-api-7k16.onrender.com/vehicles/${id}/`)
+    fetch(`${API_URL}/vehicles/${id}/`)
       .then(res => {
         if (!res.ok) {
           throw new Error("Vehiculo no encontrado")

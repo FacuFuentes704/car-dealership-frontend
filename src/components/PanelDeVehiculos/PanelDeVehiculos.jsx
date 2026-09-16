@@ -1,6 +1,7 @@
 import TarjetaVehiculo from '../TarjetaVehiculos/TarjetaVehiculo'
 import { useEffect, useState } from "react"
 import './PanelDeVehiculos.css'
+import { API_URL } from '../../config'
 
 function PanelDeVehiculos({ condition, offer }) {
   const [vehiculos, setVehiculos] = useState([])
@@ -21,7 +22,7 @@ function PanelDeVehiculos({ condition, offer }) {
 
   useEffect(() => {
     setCargando(true)
-    let url = `https://car-dealership-api-7k16.onrender.com/vehicles/?status=available`
+    let url = `${API_URL}/vehicles/?status=available`
     if (condition) url += `&condition=${condition}`
     if (offer) url += `&is_offer=true`
     if (busqueda) url += `&search=${busqueda}`
@@ -109,21 +110,27 @@ function PanelDeVehiculos({ condition, offer }) {
       {error && <p>Error: {error}</p>}
 
       {!cargando && !error && (
-        <div className="panel-vehiculos">
-          {vehiculos.map((vehiculo) => (
-            <TarjetaVehiculo
-              key={vehiculo.id}
-              id={vehiculo.id}
-              marca={vehiculo.brand}
-              modelo={vehiculo.model}
-              year={vehiculo.year}
-              precio={vehiculo.price}
-              km={vehiculo.km}
-              photos={vehiculo.photos}
-              esOferta={vehiculo.is_offer}
-            />
-          ))}
-        </div>
+        <>
+          {vehiculos.length === 0 ? (
+            <p className="sin-resultados">No se encontraron vehículos con estos filtros.</p>
+          ) : (
+            <div className="panel-vehiculos">
+              {vehiculos.map((vehiculo) => (
+                <TarjetaVehiculo
+                  key={vehiculo.id}
+                  id={vehiculo.id}
+                  marca={vehiculo.brand}
+                  modelo={vehiculo.model}
+                  year={vehiculo.year}
+                  precio={vehiculo.price}
+                  km={vehiculo.km}
+                  photos={vehiculo.photos}
+                  esOferta={vehiculo.is_offer}
+                />
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   )

@@ -1,0 +1,1 @@
+export const API_URL = "https://car-dealership-api-7k16.onrender.com"

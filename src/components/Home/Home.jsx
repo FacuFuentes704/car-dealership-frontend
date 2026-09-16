@@ -3,12 +3,10 @@ import PorQueElegirnos from '../PorQueElegirnos/PorQueElegirnos'
 import PanelDeVehiculos from '../PanelDeVehiculos/PanelDeVehiculos'
 import useEnPantalla from '../../hooks/useEnPantalla'
 import './Home.css'
-import { useEffect } from 'react'
+import useTitulo from '../../hooks/useTitulo'
 
 function Home() {
-  useEffect(() => {
-  document.title = "LGi Motors - Agencia de Autos en Venado Tuerto"
-}, [])
+  useTitulo("LGi Motors - Agencia de Autos en Venado Tuerto")
 
   const [refOfertas, visibleOfertas] = useEnPantalla()
   const [refCatalogo, visibleCatalogo] = useEnPantalla()

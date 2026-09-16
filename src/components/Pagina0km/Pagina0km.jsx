@@ -1,12 +1,10 @@
-import { useEffect } from 'react'
 import PanelDeVehiculos from '../PanelDeVehiculos/PanelDeVehiculos'
 import BotonWhatsApp from '../BotonWhatsapp/BotonWhatsapp'
 import './Pagina0km.css'
+import useTitulo from '../../hooks/useTitulo'
 
 function Pagina0km() {
-  useEffect(() => {
-    document.title = "Vehículos 0KM - LGi Motors"
-  }, [])
+  useTitulo("Vehículos 0KM")
 
   return (
     <div className="pagina-condicion container">

@@ -1,12 +1,10 @@
-import { useEffect } from 'react'
+import useTitulo from '../../hooks/useTitulo'
 import PanelDeVehiculos from '../PanelDeVehiculos/PanelDeVehiculos'
 import './PaginaUsados.css'
 import BotonWhatsApp from '../BotonWhatsapp/BotonWhatsapp'
 
 function PaginaUsados() {
-  useEffect(() => {
-    document.title = "Vehículos Usados - LGi Motors"
-  }, [])
+useTitulo("Vehículos Usados - LGI Motors")
 
   return (
     <div className="pagina-condicion container">
