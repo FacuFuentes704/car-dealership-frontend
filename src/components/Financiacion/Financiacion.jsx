@@ -1,7 +1,12 @@
 import './Financiacion.css'
 import BotonWhatsApp from '../BotonWhatsapp/BotonWhatsapp'
+import { useEffect } from 'react'
 
 function Financiacion() {
+  useEffect(() => {
+  document.title = "Financiación - LGi Motors"
+}, [])
+
   return (
     <div className="financiacion container">
       <h1>Financiación</h1>

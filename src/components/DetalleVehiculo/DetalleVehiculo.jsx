@@ -29,6 +29,12 @@ function DetalleVehiculo() {
       })
   }, [id])
 
+  useEffect(() => {
+    if (vehiculo) {
+      document.title = `${vehiculo.brand} ${vehiculo.model} ${vehiculo.year} - LGi Motors`
+    }
+  }, [vehiculo])
+
   if (cargando) return <p className="detalle-mensaje">Cargando vehículo...</p>
   if (error) return <p className="detalle-mensaje">Error: {error}</p>
 

@@ -1,8 +1,13 @@
 import PanelDeVehiculos from '../PanelDeVehiculos/PanelDeVehiculos'
 import './PaginaOfertas.css'
 import BotonWhatsApp from '../BotonWhatsapp/BotonWhatsapp'
+import { useEffect } from 'react'
 
 function PaginaOfertas() {
+  useEffect(() => {
+  document.title = "Ofertas - LGi Motors"
+}, [])
+
   return (
     <div className="pagina-condicion container">
       <h1>Vehículos en Oferta</h1>

@@ -1,8 +1,13 @@
+import { useEffect } from 'react'
 import PanelDeVehiculos from '../PanelDeVehiculos/PanelDeVehiculos'
-import './Pagina0km.css'
 import BotonWhatsApp from '../BotonWhatsapp/BotonWhatsapp'
+import './Pagina0km.css'
 
 function Pagina0km() {
+  useEffect(() => {
+    document.title = "Vehículos 0KM - LGi Motors"
+  }, [])
+
   return (
     <div className="pagina-condicion container">
       <h1>Vehículos 0KM</h1>

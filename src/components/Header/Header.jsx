@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom'
+import logoClaro from '../../assets/logo-lgi-motors.png'
+import logoOscuro from '../../assets/logo-lgi-motors-dark.png'
 import './Header.css'
 
 function Header({ modoOscuro, setModoOscuro }) {
   return (
     <header className="header">
       <Link to="/" className="header-logo">
-        <span className="logo-lgi">LGi</span> <span className="logo-motors">Motors</span>
+        <img
+          src={modoOscuro ? logoOscuro : logoClaro}
+          alt="LGi Motors"
+          className="header-logo-img"
+        />
       </Link>
       <nav className="header-nav">
         <Link to="/0km">0KM</Link>

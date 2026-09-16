@@ -1,21 +1,86 @@
-.panel-vehiculos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+.controles-catalogo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .buscador {
   width: 100%;
-  max-width: 400px;
   padding: 12px 16px;
   border: 1px solid var(--border);
   background-color: var(--card-bg);
   color: var(--text);
+  font-family: var(--font-body);
   font-size: 15px;
-  margin-bottom: 32px;
 }
 
 .buscador:focus {
   outline: none;
   border-color: var(--primario);
+}
+
+.boton-filtros {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background-color: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+  text-align: left;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.boton-filtros:hover {
+  border-color: var(--primario);
+  background-color: var(--bg);
+}
+
+.panel-filtros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.filtro-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filtro-campo label {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.filtro-campo input,
+.filtro-campo select {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.filtro-campo input:focus,
+.filtro-campo select:focus {
+  outline: none;
+  border-color: var(--primario);
+}
+
+.panel-vehiculos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
 }

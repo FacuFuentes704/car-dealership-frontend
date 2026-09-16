@@ -1,9 +1,13 @@
+import { useEffect } from 'react'
 import PanelDeVehiculos from '../PanelDeVehiculos/PanelDeVehiculos'
 import './PaginaUsados.css'
 import BotonWhatsApp from '../BotonWhatsapp/BotonWhatsapp'
 
 function PaginaUsados() {
-  const mensajeWhatsApp = "Hola, me comunico desde lgimotors.com. Estoy interesado en conocer más sobre los vehículos usados disponibles."
+  useEffect(() => {
+    document.title = "Vehículos Usados - LGi Motors"
+  }, [])
+
   return (
     <div className="pagina-condicion container">
       <h1>Vehículos Usados</h1>

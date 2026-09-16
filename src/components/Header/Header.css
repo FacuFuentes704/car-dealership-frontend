@@ -5,38 +5,37 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 32px;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 20px;
   background-color: var(--bg);
   border-bottom: 1px solid var(--border);
 }
 
 .header-logo {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
-  text-decoration: none;
-  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
 }
 
-.logo-lgi {
-  color: var(--text);
-}
-
-.logo-motors {
-  color: var(--primario);
+.header-logo-img {
+  height: 36px;
+  width: auto;
 }
 
 .header-nav {
   display: flex;
-  gap: 28px;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .header-nav a {
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
   transition: color 0.15s ease;
+  white-space: nowrap;
 }
 
 .header-nav a:hover {
