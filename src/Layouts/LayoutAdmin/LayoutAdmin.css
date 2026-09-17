@@ -1,0 +1,20 @@
+.layout-admin {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background-color: var(--card-bg);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenido-admin {
+  flex: 1;
+  padding: 32px;
+  overflow-x: auto;
+}

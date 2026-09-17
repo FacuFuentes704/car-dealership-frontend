@@ -1,0 +1,83 @@
+.login-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 40px 32px;
+}
+
+.login-form h1 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.login-subtitulo {
+  text-align: center;
+  opacity: 0.6;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.login-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-campo label {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.login-campo input {
+  padding: 12px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+}
+
+.login-campo input:focus {
+  outline: none;
+  border-color: var(--primario);
+}
+
+.login-error {
+  color: var(--primario);
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-form button {
+  padding: 14px;
+  background-color: var(--primario);
+  color: white;
+  border: none;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.login-form button:hover {
+  opacity: 0.85;
+}
+
+.login-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
