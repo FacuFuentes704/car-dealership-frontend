@@ -1,0 +1,89 @@
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.admin-header h1 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.boton-crear {
+  background-color: var(--primario);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.tabla-admin {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+}
+
+.tabla-admin th {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--border);
+  font-size: 13px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.tabla-admin td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.fila-inactiva {
+  opacity: 0.5;
+}
+
+.badge {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.badge-available {
+  background-color: var(--disponible);
+  color: white;
+}
+
+.badge-reserved {
+  background-color: var(--reservado);
+  color: #1a1a1a;
+}
+
+.badge-sold {
+  background-color: var(--vendido);
+  color: white;
+}
+
+.tabla-admin a {
+  color: var(--primario);
+  text-decoration: none;
+  margin-right: 12px;
+  font-size: 13px;
+}
+
+.boton-baja {
+  background: none;
+  border: none;
+  color: var(--vendido);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+}
+
+.boton-baja:hover {
+  text-decoration: underline;
+}

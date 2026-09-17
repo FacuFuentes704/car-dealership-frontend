@@ -1,0 +1,69 @@
+.dashboard h1 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.dashboard-seccion {
+  margin-bottom: 40px;
+}
+
+.dashboard-seccion h2 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-numero {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--primario);
+}
+
+.stat-label {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.stat-card {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.stat-disponible .stat-numero,
+.stat-disponible.stat-numero {
+  color: var(--disponible);
+}
+
+.stat-reservado .stat-numero {
+  color: var(--reservado);
+}
+
+.stat-vendido .stat-numero {
+  color: var(--vendido);
+}
+
+.stat-card:hover {
+  border-color: var(--primario);
+}

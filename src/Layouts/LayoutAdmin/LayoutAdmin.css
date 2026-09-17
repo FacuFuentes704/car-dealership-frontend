@@ -13,6 +13,70 @@
   flex-direction: column;
 }
 
+.sidebar-logo {
+  height: 40px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  margin-bottom: 32px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+}
+
+.sidebar-nav a:hover {
+  background-color: var(--bg);
+  color: var(--primario);
+}
+
+.sidebar-toggle-tema {
+  margin-top: 24px;
+  padding: 10px 12px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.sidebar-toggle-tema:hover {
+  border-color: var(--primario);
+}
+
+.sidebar-salir {
+  margin-top: auto;
+  padding: 10px 12px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--primario);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.sidebar-salir:hover {
+  background-color: var(--primario);
+  color: white;
+}
+
 .contenido-admin {
   flex: 1;
   padding: 32px;
