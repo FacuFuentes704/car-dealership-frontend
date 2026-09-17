@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { API_URL } from '../../config'
 import './Dashboard.css'
+import { fetchConToken } from '../../utils/fetchConToken'
 
 function Dashboard() {
   const [vehiculosStats, setVehiculosStats] = useState(null)
@@ -9,16 +10,10 @@ function Dashboard() {
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
-    const token = localStorage.getItem("token")
-
+ useEffect(() => {
     Promise.all([
-      fetch(`${API_URL}/vehicles/dashboard`, {
-        headers: { Authorization: `Bearer ${token}` }
-      }).then(res => res.json()),
-      fetch(`${API_URL}/clients/dashboard`, {
-        headers: { Authorization: `Bearer ${token}` }
-      }).then(res => res.json())
+      fetchConToken(`${API_URL}/vehicles/dashboard`).then(res => res.json()),
+      fetchConToken(`${API_URL}/clients/dashboard`).then(res => res.json())
     ])
       .then(([vehiculosData, clientesData]) => {
         setVehiculosStats(vehiculosData)

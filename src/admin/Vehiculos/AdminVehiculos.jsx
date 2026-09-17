@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { API_URL } from '../../config'
 import './AdminVehiculos.css'
+import { fetchConToken } from '../../utils/fetchConToken'
 
 function AdminVehiculos() {
   const [searchParams] = useSearchParams()
@@ -12,13 +13,10 @@ function AdminVehiculos() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
     let url = `${API_URL}/vehicles/admin?only_active=false`
     if (statusFiltro) url += `&status=${statusFiltro}`
 
-    fetch(url, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
+    fetchConToken(url)
       .then(res => {
         if (!res.ok) throw new Error("Error al traer los vehículos")
         return res.json()
@@ -34,12 +32,7 @@ function AdminVehiculos() {
   }, [statusFiltro])
 
   function darDeBaja(id) {
-    const token = localStorage.getItem("token")
-
-    fetch(`${API_URL}/vehicles/${id}`, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` }
-    })
+    fetchConToken(`${API_URL}/vehicles/${id}`, { method: "DELETE" })
       .then(res => {
         if (!res.ok) throw new Error("No se pudo dar de baja")
 

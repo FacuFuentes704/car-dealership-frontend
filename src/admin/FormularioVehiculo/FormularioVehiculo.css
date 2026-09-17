@@ -1,0 +1,184 @@
+.formulario-vehiculo {
+  max-width: 800px;
+}
+
+.formulario-vehiculo h1 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-campo label {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.form-campo input,
+.form-campo select,
+.form-campo textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.form-campo input:focus,
+.form-campo select:focus,
+.form-campo textarea:focus {
+  outline: none;
+  border-color: var(--primario);
+}
+
+.form-checkbox label {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  opacity: 1;
+}
+
+.form-descripcion {
+  margin-bottom: 24px;
+}
+
+.form-descripcion textarea {
+  resize: vertical;
+  font-family: var(--font-body);
+}
+
+.form-error {
+  color: var(--vendido);
+  margin-bottom: 16px;
+}
+
+.form-acciones {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.form-acciones button {
+  padding: 12px 24px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.boton-guardar {
+  background-color: var(--primario) !important;
+  color: white !important;
+  border-color: var(--primario) !important;
+}
+
+.boton-guardar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-fotos {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+
+.form-fotos h2 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.fotos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.foto-item {
+  position: relative;
+  width: 140px;
+  border: 1px solid var(--border);
+}
+
+.foto-item img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+}
+
+.foto-principal {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background-color: var(--primario);
+  color: white;
+  font-size: 11px;
+  padding: 2px 6px;
+}
+
+.foto-acciones {
+  display: flex;
+  flex-direction: column;
+}
+
+.foto-acciones button {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.foto-acciones button:first-child {
+  background-color: var(--card-bg);
+  color: var(--text);
+  border-top: 1px solid var(--border);
+}
+
+.foto-acciones button:last-child {
+  background-color: var(--vendido);
+  color: white;
+}
+
+.input-subir-foto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 140px;
+  height: 100px;
+  border: 1px dashed var(--border);
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  padding: 8px;
+}
+
+.input-subir-foto:hover {
+  border-color: var(--primario);
+}
+
+.input-subir-foto-hint {
+  font-size: 11px;
+  opacity: 0.6;
+}
