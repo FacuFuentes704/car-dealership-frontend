@@ -1,0 +1,10 @@
+.formulario-cliente {
+  max-width: 700px;
+}
+
+.formulario-cliente h1 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}

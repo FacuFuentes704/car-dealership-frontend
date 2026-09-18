@@ -30,7 +30,7 @@ function Financiacion() {
           entregar.
         </p>
       </section>
-      <BotonWhatsApp mensaje="Hola, me comunico desde lgimotors.com. Estoy interesado en conocer más sobre los vehículos 0KM disponibles." />
+      <BotonWhatsApp mensaje="Hola, me comunico desde lgimotors.com. Estoy interesado en conocer más sobre las opciones de financiación disponibles." />
     </div>
   )
 }

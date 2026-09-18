@@ -87,3 +87,45 @@
 .boton-baja:hover {
   text-decoration: underline;
 }
+
+.admin-filtros {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.admin-filtros .buscador {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.admin-filtros select {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.filtro-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.sin-resultados {
+  text-align: center;
+  padding: 40px 0;
+  opacity: 0.6;
+}

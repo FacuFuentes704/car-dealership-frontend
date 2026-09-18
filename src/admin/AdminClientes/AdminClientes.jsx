@@ -2,44 +2,43 @@ import { useEffect, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { API_URL } from '../../config'
 import { fetchConToken } from '../../utils/fetchConToken'
-import './AdminVehiculos.css'
+import './AdminClientes.css'
 
-function AdminVehiculos() {
+function AdminClientes() {
   const [searchParams, setSearchParams] = useSearchParams()
   const statusFiltro = searchParams.get("status") || ""
 
-  const [vehiculos, setVehiculos] = useState([])
+  const [clientes, setClientes] = useState([])
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
   const [busqueda, setBusqueda] = useState("")
-  const [soloActivos, setSoloActivos] = useState(false)
 
   useEffect(() => {
-    let url = `${API_URL}/vehicles/admin?only_active=${soloActivos}`
+    let url = `${API_URL}/clients/?only_active=false`
     if (statusFiltro) url += `&status=${statusFiltro}`
     if (busqueda) url += `&search=${busqueda}`
 
     fetchConToken(url)
       .then(res => {
-        if (!res.ok) throw new Error("Error al traer los vehículos")
+        if (!res.ok) throw new Error("Error al traer los clientes")
         return res.json()
       })
       .then(datos => {
-        setVehiculos(datos)
+        setClientes(datos)
         setCargando(false)
       })
       .catch(err => {
         setError(err.message)
         setCargando(false)
       })
-  }, [statusFiltro, busqueda, soloActivos])
+  }, [statusFiltro, busqueda])
 
   function darDeBaja(id) {
-    fetchConToken(`${API_URL}/vehicles/${id}`, { method: "DELETE" })
+    fetchConToken(`${API_URL}/clients/${id}`, { method: "DELETE" })
       .then(res => {
         if (!res.ok) throw new Error("No se pudo dar de baja")
-        setVehiculos(prev => prev.map((v) =>
-          v.id === id ? { ...v, is_active: false } : v
+        setClientes(prev => prev.map((c) =>
+          c.id === id ? { ...c, is_active: false } : c
         ))
       })
       .catch(err => alert(err.message))
@@ -53,22 +52,22 @@ function AdminVehiculos() {
     }
   }
 
-  if (cargando) return <p>Cargando vehículos...</p>
+  if (cargando) return <p>Cargando clientes...</p>
   if (error) return <p>{error}</p>
 
   return (
-    <div className="admin-vehiculos">
+    <div className="admin-clientes">
       <div className="admin-header">
-        <h1>Vehículos</h1>
-        <Link to="/admin/vehiculos/nuevo" className="boton-crear">
-          + Nuevo vehículo
+        <h1>Clientes</h1>
+        <Link to="/admin/clientes/nuevo" className="boton-crear">
+          + Nuevo cliente
         </Link>
       </div>
 
       <div className="admin-filtros">
         <input
           type="text"
-          placeholder="Buscar por marca o modelo..."
+          placeholder="Buscar por nombre, teléfono o email..."
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
           className="buscador"
@@ -76,51 +75,41 @@ function AdminVehiculos() {
 
         <select value={statusFiltro} onChange={(e) => cambiarStatus(e.target.value)}>
           <option value="">Todos los estados</option>
-          <option value="available">Disponible</option>
-          <option value="reserved">Reservado</option>
-          <option value="sold">Vendido</option>
+          <option value="waiting">Esperando</option>
+          <option value="negotiating">Negociando</option>
+          <option value="closed">Cerrado</option>
+          <option value="lost">Perdido</option>
         </select>
-
-        <label className="filtro-checkbox">
-          <input
-            type="checkbox"
-            checked={soloActivos}
-            onChange={(e) => setSoloActivos(e.target.checked)}
-          />
-          Solo activos
-        </label>
       </div>
 
-      {vehiculos.length === 0 ? (
-        <p className="sin-resultados">No se encontraron vehículos.</p>
+      {clientes.length === 0 ? (
+        <p className="sin-resultados">No se encontraron clientes.</p>
       ) : (
         <table className="tabla-admin">
           <thead>
             <tr>
-              <th>Marca</th>
-              <th>Modelo</th>
-              <th>Año</th>
-              <th>Precio</th>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+              <th>Email</th>
               <th>Status</th>
               <th>Activo</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            {vehiculos.map((v) => (
-              <tr key={v.id} className={!v.is_active ? "fila-inactiva" : ""}>
-                <td>{v.brand}</td>
-                <td>{v.model}</td>
-                <td>{v.year}</td>
-                <td>${Number(v.price).toLocaleString('es-AR')}</td>
+            {clientes.map((c) => (
+              <tr key={c.id} className={!c.is_active ? "fila-inactiva" : ""}>
+                <td>{c.name}</td>
+                <td>{c.phone || "-"}</td>
+                <td>{c.email || "-"}</td>
                 <td>
-                  <span className={`badge badge-${v.status}`}>{v.status}</span>
+                  <span className={`badge badge-cliente-${c.status}`}>{c.status}</span>
                 </td>
-                <td>{v.is_active ? "Sí" : "No"}</td>
+                <td>{c.is_active ? "Sí" : "No"}</td>
                 <td>
-                  <Link to={`/admin/vehiculos/${v.id}/editar`}>Editar</Link>
-                  {v.is_active && (
-                    <button onClick={() => darDeBaja(v.id)} className="boton-baja">
+                  <Link to={`/admin/clientes/${c.id}/editar`}>Editar</Link>
+                  {c.is_active && (
+                    <button onClick={() => darDeBaja(c.id)} className="boton-baja">
                       Dar de baja
                     </button>
                   )}
@@ -134,4 +123,4 @@ function AdminVehiculos() {
   )
 }
 
-export default AdminVehiculos
+export default AdminClientes

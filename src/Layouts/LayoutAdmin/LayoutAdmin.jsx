@@ -1,7 +1,6 @@
 import { Outlet, Link, useNavigate } from 'react-router-dom'
 import logoClaro from '../../assets/logo-lgi-motors.png'
 import logoOscuro from '../../assets/logo-lgi-motors-dark.png'
-import AdminVehiculos from '../../admin/Vehiculos/AdminVehiculos'
 import './LayoutAdmin.css'
 
 function LayoutAdmin({ modoOscuro, setModoOscuro }) {

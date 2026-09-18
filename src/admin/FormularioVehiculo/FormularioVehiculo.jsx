@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { API_URL } from '../../config'
 import { fetchConToken } from '../../utils/fetchConToken'
+import '../formularios.css'
 import './FormularioVehiculo.css'
 
 function FormularioVehiculo() {
