@@ -118,6 +118,7 @@ function AdminVehiculos() {
                 </td>
                 <td>{v.is_active ? "Sí" : "No"}</td>
                 <td>
+                  <Link to={`/admin/vehiculos/${v.id}/ver`}>Ver</Link>
                   <Link to={`/admin/vehiculos/${v.id}/editar`}>Editar</Link>
                   {v.is_active && (
                     <button onClick={() => darDeBaja(v.id)} className="boton-baja">

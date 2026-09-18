@@ -1,0 +1,70 @@
+.ver-vehiculo {
+  max-width: 800px;
+}
+
+.ver-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.ver-header h1 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.boton-editar-desde-ver {
+  background-color: var(--primario);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.ver-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.ver-imagen {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.ver-sin-foto {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--border);
+  opacity: 0.6;
+}
+
+.ver-datos p {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.ver-datos span {
+  opacity: 0.6;
+}
+
+.ver-descripcion {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.ver-descripcion h2 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin-bottom: 8px;
+}

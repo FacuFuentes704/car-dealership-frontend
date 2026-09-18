@@ -93,6 +93,7 @@ function AdminClientes() {
               <th>Email</th>
               <th>Status</th>
               <th>Activo</th>
+              <th>Alta</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -106,6 +107,7 @@ function AdminClientes() {
                   <span className={`badge badge-cliente-${c.status}`}>{c.status}</span>
                 </td>
                 <td>{c.is_active ? "Sí" : "No"}</td>
+                <td>{new Date(c.created_at).toLocaleDateString('es-AR')}</td>
                 <td>
                   <Link to={`/admin/clientes/${c.id}/editar`}>Editar</Link>
                   {c.is_active && (
@@ -116,6 +118,7 @@ function AdminClientes() {
                 </td>
               </tr>
             ))}
+            
           </tbody>
         </table>
       )}

@@ -15,6 +15,7 @@ import AdminVehiculos from './admin/Vehiculos/AdminVehiculos'
 import FormularioVehiculo from './admin/FormularioVehiculo/FormularioVehiculo'
 import AdminClientes from './admin/AdminClientes/AdminClientes'
 import FormularioCliente from './admin/FormularioClientes/FormularioClientes'
+import VerVehiculo from './admin/VerVehiculo/VerVehiculo'
 
 function App() {
   const [modoOscuro, setModoOscuro] = useState(false)
@@ -54,6 +55,7 @@ function App() {
         <Route path="/admin/clientes" element={<AdminClientes />} />
         <Route path="/admin/clientes/nuevo" element={<FormularioCliente />} />
         <Route path="/admin/clientes/:id/editar" element={<FormularioCliente />} />
+        <Route path="/admin/vehiculos/:id/ver" element={<VerVehiculo />} />
       </Route>
     </Routes>
   )
