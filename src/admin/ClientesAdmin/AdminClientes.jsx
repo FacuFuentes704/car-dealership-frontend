@@ -37,7 +37,7 @@ function AdminClientes() {
     fetchConToken(`${API_URL}/clients/${id}`, { method: "DELETE" })
       .then(res => {
         if (!res.ok) throw new Error("No se pudo dar de baja")
-        setClientes(prev => prev.map((c) =>
+        setClientes(clientes.map((c) =>
           c.id === id ? { ...c, is_active: false } : c
         ))
       })
@@ -109,7 +109,9 @@ function AdminClientes() {
                 <td>{c.is_active ? "Sí" : "No"}</td>
                 <td>{new Date(c.created_at).toLocaleDateString('es-AR')}</td>
                 <td>
+                  <Link to={`/admin/clientes/${c.id}/ver`}>Ver</Link>
                   <Link to={`/admin/clientes/${c.id}/editar`}>Editar</Link>
+                  <Link to={`/admin/clientes/${c.id}/intereses`}>Intereses</Link>
                   {c.is_active && (
                     <button onClick={() => darDeBaja(c.id)} className="boton-baja">
                       Dar de baja
@@ -118,7 +120,6 @@ function AdminClientes() {
                 </td>
               </tr>
             ))}
-            
           </tbody>
         </table>
       )}

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { API_URL } from '../../config'
 import { fetchConToken } from '../../utils/fetchConToken'
 import './VerVehiculo.css'
+import '../ver-detalle.css'
 
 function VerVehiculo() {
   const { id } = useParams()
@@ -58,6 +59,32 @@ function VerVehiculo() {
           <p>{vehiculo.description}</p>
         </div>
       )}
+
+      <div className="ver-intereses">
+        <h2>Clientes interesados</h2>
+
+        {vehiculo.interested_clients && vehiculo.interested_clients.length > 0 ? (
+          <div className="intereses-lista">
+            {vehiculo.interested_clients.map((interes) => (
+              <Link
+                key={interes.id}
+                to={`/admin/clientes/${interes.client.id}/ver`}
+                className="interes-item"
+              >
+                <strong>{interes.client.name}</strong>
+                <span>{interes.client.phone}</span>
+                <span className={`badge badge-cliente-${interes.client.status}`}>{interes.client.status}</span>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <p className="sin-intereses">Sin clientes interesados todavía.</p>
+        )}
+
+        <Link to={`/admin/vehiculos/${id}/intereses`} className="boton-gestionar-intereses">
+          Gestionar intereses
+        </Link>
+      </div>
     </div>
   )
 }

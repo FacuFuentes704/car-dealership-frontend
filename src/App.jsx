@@ -13,9 +13,12 @@ import Dashboard from './admin/Dashboard/Dashboard'
 import LayoutPublico from './Layouts/LayoutPublico/LayoutPublico'
 import AdminVehiculos from './admin/Vehiculos/AdminVehiculos'
 import FormularioVehiculo from './admin/FormularioVehiculo/FormularioVehiculo'
-import AdminClientes from './admin/AdminClientes/AdminClientes'
-import FormularioCliente from './admin/FormularioClientes/FormularioClientes'
 import VerVehiculo from './admin/VerVehiculo/VerVehiculo'
+import AdminClientes from './admin/ClientesAdmin/AdminClientes'
+import FormularioCliente from './admin/FormularioClientes/FormularioClientes'
+import VerCliente from './admin/VerClientes/VerClientes'
+import GestionInteresesCliente from './admin/GestionIntereses/GestionInteresesCliente'
+import GestionInteresesVehiculo from './admin/GestionIntereses/GestionInteresesVehiculo'
 
 function App() {
   const [modoOscuro, setModoOscuro] = useState(false)
@@ -52,10 +55,13 @@ function App() {
         <Route path="/admin/vehiculos" element={<AdminVehiculos />} />
         <Route path="/admin/vehiculos/nuevo" element={<FormularioVehiculo />} />
         <Route path="/admin/vehiculos/:id/editar" element={<FormularioVehiculo />} />
+        <Route path="/admin/vehiculos/:id/ver" element={<VerVehiculo />} />
         <Route path="/admin/clientes" element={<AdminClientes />} />
         <Route path="/admin/clientes/nuevo" element={<FormularioCliente />} />
         <Route path="/admin/clientes/:id/editar" element={<FormularioCliente />} />
-        <Route path="/admin/vehiculos/:id/ver" element={<VerVehiculo />} />
+        <Route path="/admin/clientes/:id/ver" element={<VerCliente />} />
+        <Route path="/admin/clientes/:id/intereses" element={<GestionInteresesCliente />} />
+        <Route path="/admin/vehiculos/:id/intereses" element={<GestionInteresesVehiculo />} />
       </Route>
     </Routes>
   )

@@ -1,0 +1,45 @@
+.ver-cliente {
+  max-width: 600px;
+}
+
+.ver-cliente .ver-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.ver-cliente .ver-header h1 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+}
+.form-agregar-interes {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.form-agregar-interes select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.form-agregar-interes button {
+  padding: 8px 16px;
+  background-color: var(--primario);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.form-agregar-interes button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -17,6 +17,7 @@ function FormularioVehiculo() {
     price: "",
     km: "",
     color: "",
+    plate: "",
     description: "",
     fuel_type: "gasoline",
     transmission: "manual",
@@ -43,6 +44,7 @@ function FormularioVehiculo() {
           price: vehiculo.price,
           km: vehiculo.km,
           color: vehiculo.color || "",
+          plate: vehiculo.plate || "", 
           description: vehiculo.description || "",
           fuel_type: vehiculo.fuel_type,
           transmission: vehiculo.transmission,
@@ -226,6 +228,16 @@ function FormularioVehiculo() {
               onChange={(e) => manejarCambio("color", e.target.value)}
             />
           </div>
+
+            <div className="form-campo">
+            <label>Patente</label>
+            <input
+                type="text"
+                value={datos.plate}
+                onChange={(e) => manejarCambio("plate", e.target.value.toUpperCase())}
+                placeholder="Ej: AB123CD"
+            />
+            </div>
 
           <div className="form-campo">
             <label>Combustible</label>

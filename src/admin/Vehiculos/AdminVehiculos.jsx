@@ -38,7 +38,7 @@ function AdminVehiculos() {
     fetchConToken(`${API_URL}/vehicles/${id}`, { method: "DELETE" })
       .then(res => {
         if (!res.ok) throw new Error("No se pudo dar de baja")
-        setVehiculos(prev => prev.map((v) =>
+        setVehiculos(vehiculos.map((v) =>
           v.id === id ? { ...v, is_active: false } : v
         ))
       })
@@ -103,6 +103,7 @@ function AdminVehiculos() {
               <th>Precio</th>
               <th>Status</th>
               <th>Activo</th>
+              <th>Alta</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -117,9 +118,11 @@ function AdminVehiculos() {
                   <span className={`badge badge-${v.status}`}>{v.status}</span>
                 </td>
                 <td>{v.is_active ? "Sí" : "No"}</td>
+                <td>{new Date(v.created_at).toLocaleDateString('es-AR')}</td>
                 <td>
                   <Link to={`/admin/vehiculos/${v.id}/ver`}>Ver</Link>
                   <Link to={`/admin/vehiculos/${v.id}/editar`}>Editar</Link>
+                  <Link to={`/admin/vehiculos/${v.id}/intereses`}>Intereses</Link>
                   {v.is_active && (
                     <button onClick={() => darDeBaja(v.id)} className="boton-baja">
                       Dar de baja

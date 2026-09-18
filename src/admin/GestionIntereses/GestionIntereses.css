@@ -1,0 +1,75 @@
+.gestion-intereses {
+  max-width: 600px;
+}
+
+.gestion-intereses .ver-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.gestion-intereses .ver-header h1 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.gestion-intereses .intereses-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.interes-item-gestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.interes-item-gestion button {
+  background-color: var(--vendido);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.interes-item-gestion button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-agregar-interes {
+  display: flex;
+  gap: 8px;
+}
+
+.form-agregar-interes select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.form-agregar-interes button {
+  padding: 8px 16px;
+  background-color: var(--primario);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.form-agregar-interes button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

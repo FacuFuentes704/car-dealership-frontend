@@ -1,0 +1,52 @@
+.ver-intereses {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.ver-intereses h2 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.intereses-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.interes-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  transition: border-color 0.15s ease;
+}
+
+.interes-item:hover {
+  border-color: var(--primario);
+}
+
+.sin-intereses {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-bottom: 12px;
+}
+
+.boton-gestionar-intereses {
+  display: inline-block;
+  color: var(--primario);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.boton-gestionar-intereses:hover {
+  text-decoration: underline;
+}

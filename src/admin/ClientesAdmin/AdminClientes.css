@@ -1,0 +1,46 @@
+.admin-filtros {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.admin-filtros .buscador {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.admin-filtros select {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.badge-cliente-waiting {
+  background-color: var(--reservado);
+  color: #1a1a1a;
+}
+
+.badge-cliente-negotiating {
+  background-color: var(--primario);
+  color: white;
+}
+
+.badge-cliente-closed {
+  background-color: var(--disponible);
+  color: white;
+}
+
+.badge-cliente-lost {
+  background-color: var(--border);
+  color: var(--text);
+}
