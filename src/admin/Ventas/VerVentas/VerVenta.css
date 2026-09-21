@@ -1,0 +1,16 @@
+.ver-venta-detalle {
+  max-width: 600px;
+}
+
+.ver-venta-detalle .ver-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.ver-venta-detalle .ver-header h1 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+}

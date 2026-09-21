@@ -47,7 +47,8 @@ function VerVehiculo() {
         )}
 
         <div className="ver-datos">
-          <p><span>Precio</span><strong>${Number(vehiculo.price).toLocaleString('es-AR')}</strong></p>
+          <p><span>Precio Permuta</span><strong>${Number(vehiculo.price).toLocaleString('es-AR')}</strong></p>
+          <p><span>Precio Contado</span><strong>{vehiculo.price_cash ? `$${Number(vehiculo.price_cash).toLocaleString('es-AR')}` : "-"}</strong></p>
           <p><span>Año</span><strong>{vehiculo.year}</strong></p>
           <p><span>Km</span><strong>{Number(vehiculo.km).toLocaleString('es-AR')}</strong></p>
           <p><span>Color</span><strong>{vehiculo.color || "-"}</strong></p>

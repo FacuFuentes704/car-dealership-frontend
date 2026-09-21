@@ -22,7 +22,9 @@ function Login() {
     })
       .then(res => {
         if (!res.ok) {
-          throw new Error("Email o contraseña incorrectos")
+          return res.json().then(data => {
+            throw new Error(data.detail || "Email o contraseña incorrectos")
+          })
         }
         return res.json()
       })

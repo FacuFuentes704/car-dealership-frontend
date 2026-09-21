@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import BotonWhatsApp from "../BotonWhatsapp/BotonWhatsapp"
 import './DetalleVehiculo.css'
 import { API_URL } from '../../config'
+import { TRADUCCIONES_FUEL_TYPE, TRADUCCIONES_TRANSMISSION } from '../../admin/traducciones'
 
 function DetalleVehiculo() {
   const { id } = useParams()
@@ -16,7 +17,9 @@ function DetalleVehiculo() {
     fetch(`${API_URL}/vehicles/${id}/`)
       .then(res => {
         if (!res.ok) {
-          throw new Error("Vehiculo no encontrado")
+          return res.json().then(data => {
+            throw new Error(data.detail || "Vehiculo no encontrado")
+          })
         }
         return res.json()
       })
@@ -82,8 +85,8 @@ function DetalleVehiculo() {
           <div className="detalle-specs">
             <div><span>Año</span><strong>{vehiculo.year}</strong></div>
             <div><span>Km</span><strong>{Number(vehiculo.km).toLocaleString('es-AR')}</strong></div>
-            <div><span>Combustible</span><strong>{vehiculo.fuel_type}</strong></div>
-            <div><span>Transmisión</span><strong>{vehiculo.transmission}</strong></div>
+            <div><span>Combustible</span><strong>{TRADUCCIONES_FUEL_TYPE[vehiculo.fuel_type]}</strong></div>
+            <div><span>Transmisión</span><strong>{TRADUCCIONES_TRANSMISSION[vehiculo.transmission]}</strong></div>
           </div>
 
           <BotonWhatsApp

@@ -60,7 +60,11 @@ function GestionInteresesCliente() {
       method: "DELETE"
     })
       .then(res => {
-        if (!res.ok) throw new Error("No se pudo quitar el interés")
+        if (!res.ok) {
+          return res.json().then(data => {
+            throw new Error(data.detail || "No se pudo quitar el interés")
+          })
+        }
         return cargarDatos()
       })
       .then(() => setProcesando(false))

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { API_URL } from '../../../config'
 import { fetchConToken } from '../../../utils/fetchConToken'
@@ -6,7 +6,9 @@ import '../../formularios.css'
 import './FormularioVenta.css'
 
 function FormularioVenta() {
+  const { id } = useParams()
   const navigate = useNavigate()
+  const esEdicion = Boolean(id)
 
   const [vehiculosDisponibles, setVehiculosDisponibles] = useState([])
   const [clientes, setClientes] = useState([])
@@ -23,20 +25,46 @@ function FormularioVenta() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    Promise.all([
+    const promesas = [
       fetchConToken(`${API_URL}/vehicles/admin?only_active=true&status=available`).then(res => res.json()),
       fetchConToken(`${API_URL}/clients/?only_active=true`).then(res => res.json())
-    ])
-      .then(([vehiculosData, clientesData]) => {
-        setVehiculosDisponibles(vehiculosData)
+    ]
+
+    if (esEdicion) {
+      promesas.push(fetchConToken(`${API_URL}/sales/${id}`).then(res => res.json()))
+    }
+
+    Promise.all(promesas)
+      .then(([vehiculosData, clientesData, ventaData]) => {
+        let listaVehiculos = vehiculosData
+
+        if (esEdicion && ventaData) {
+          const yaEsta = vehiculosData.some((v) => v.id === ventaData.vehicle.id)
+          if (!yaEsta) {
+            listaVehiculos = [...vehiculosData, ventaData.vehicle]
+          }
+        }
+
+        setVehiculosDisponibles(listaVehiculos)
         setClientes(clientesData)
+
+        if (esEdicion && ventaData) {
+          setDatos({
+            vehicle_id: ventaData.vehicle.id,
+            client_id: ventaData.client.id,
+            sale_price: ventaData.sale_price,
+            payment_method: ventaData.payment_method,
+            sale_date: ventaData.sale_date ? ventaData.sale_date.split("T")[0] : "",
+            notes: ventaData.notes || ""
+          })
+        }
         setCargando(false)
       })
       .catch(() => {
         setError("No se pudieron cargar los datos")
         setCargando(false)
       })
-  }, [])
+  }, [id, esEdicion])
 
   function manejarCambio(campo, valor) {
     setDatos({ ...datos, [campo]: valor })
@@ -47,8 +75,14 @@ function FormularioVenta() {
     setError(null)
     setGuardando(true)
 
-    fetchConToken(`${API_URL}/sales/`, {
-      method: "POST",
+    const url = esEdicion
+      ? `${API_URL}/sales/${id}`
+      : `${API_URL}/sales/`
+
+    const metodo = esEdicion ? "PATCH" : "POST"
+
+    fetchConToken(url, {
+      method: metodo,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         vehicle_id: Number(datos.vehicle_id),
@@ -62,7 +96,7 @@ function FormularioVenta() {
       .then(res => {
         if (!res.ok) {
           return res.json().then(data => {
-            throw new Error(data.detail || "No se pudo registrar la venta")
+            throw new Error(data.detail || "No se pudo guardar la venta")
           })
         }
         navigate("/admin/ventas")
@@ -77,7 +111,7 @@ function FormularioVenta() {
 
   return (
     <div className="formulario-venta">
-      <h1>Nueva venta</h1>
+      <h1>{esEdicion ? "Editar venta" : "Nueva venta"}</h1>
 
       <form onSubmit={manejarSubmit}>
         <div className="form-campo">
@@ -162,7 +196,7 @@ function FormularioVenta() {
             Cancelar
           </button>
           <button type="submit" disabled={guardando} className="boton-guardar">
-            {guardando ? "Registrando..." : "Registrar venta"}
+            {guardando ? "Guardando..." : "Guardar"}
           </button>
         </div>
       </form>

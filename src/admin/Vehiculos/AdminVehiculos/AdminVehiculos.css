@@ -20,6 +20,23 @@
   font-size: 14px;
 }
 
+.boton-secundario {
+  display: inline-block;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: border-color 0.15s ease;
+}
+
+.boton-secundario:hover {
+  border-color: var(--primario);
+  color: var(--primario);
+}
+
 .tabla-admin {
   width: 100%;
   border-collapse: collapse;

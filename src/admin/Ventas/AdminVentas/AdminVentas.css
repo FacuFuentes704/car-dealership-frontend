@@ -4,3 +4,32 @@
   justify-content: space-between;
   margin-bottom: 24px;
 }
+.admin-filtros {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.filtro-fechas {
+  display: flex;
+  gap: 12px;
+}
+
+.filtro-fechas label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.filtro-fechas input {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}

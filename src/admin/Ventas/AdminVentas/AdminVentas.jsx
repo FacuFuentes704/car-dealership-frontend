@@ -2,17 +2,39 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { API_URL } from '../../../config'
 import { fetchConToken } from '../../../utils/fetchConToken'
+import { TRADUCCIONES_PAYMENT_METHOD } from '../../traducciones'
 import './AdminVentas.css'
 
 function AdminVentas() {
   const [ventas, setVentas] = useState([])
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
+  const [busqueda, setBusqueda] = useState("")
+  const [busquedaDebounced, setBusquedaDebounced] = useState("")
+  const [fechaDesde, setFechaDesde] = useState("")
+  const [fechaHasta, setFechaHasta] = useState("")
 
   useEffect(() => {
-    fetchConToken(`${API_URL}/sales/`)
+    const timeoutId = setTimeout(() => {
+      setBusquedaDebounced(busqueda)
+    }, 400)
+
+    return () => clearTimeout(timeoutId)
+  }, [busqueda])
+
+  useEffect(() => {
+    let url = `${API_URL}/sales/?`
+    if (busquedaDebounced) url += `search=${busquedaDebounced}&`
+    if (fechaDesde) url += `fecha_desde=${fechaDesde}&`
+    if (fechaHasta) url += `fecha_hasta=${fechaHasta}&`
+
+    fetchConToken(url)
       .then(res => {
-        if (!res.ok) throw new Error("Error al traer las ventas")
+        if (!res.ok) {
+          return res.json().then(data => {
+            throw new Error(data.detail || "Error al traer las ventas")
+          })
+        }
         return res.json()
       })
       .then(datos => {
@@ -23,9 +45,8 @@ function AdminVentas() {
         setError(err.message)
         setCargando(false)
       })
-  }, [])
+  }, [busquedaDebounced, fechaDesde, fechaHasta])
 
-  if (cargando) return <p>Cargando ventas...</p>
   if (error) return <p>{error}</p>
 
   return (
@@ -37,8 +58,30 @@ function AdminVentas() {
         </Link>
       </div>
 
-      {ventas.length === 0 ? (
-        <p className="sin-resultados">No hay ventas registradas todavía.</p>
+      <div className="admin-filtros">
+        <input
+          type="text"
+          placeholder="Buscar por cliente o vehículo..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+          className="buscador"
+        />
+        <div className="filtro-fechas">
+          <label>
+            Desde
+            <input type="date" value={fechaDesde} onChange={(e) => setFechaDesde(e.target.value)} />
+          </label>
+          <label>
+            Hasta
+            <input type="date" value={fechaHasta} onChange={(e) => setFechaHasta(e.target.value)} />
+          </label>
+        </div>
+      </div>
+
+      {cargando ? (
+        <p>Cargando ventas...</p>
+      ) : ventas.length === 0 ? (
+        <p className="sin-resultados">No se encontraron ventas.</p>
       ) : (
         <table className="tabla-admin">
           <thead>
@@ -48,6 +91,7 @@ function AdminVentas() {
               <th>Cliente</th>
               <th>Precio</th>
               <th>Método de pago</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +101,11 @@ function AdminVentas() {
                 <td>{v.vehicle.brand} {v.vehicle.model}</td>
                 <td>{v.client.name}</td>
                 <td>${Number(v.sale_price).toLocaleString('es-AR')}</td>
-                <td>{v.payment_method}</td>
+                <td>{TRADUCCIONES_PAYMENT_METHOD[v.payment_method]}</td>
+                <td>
+                  <Link to={`/admin/ventas/${v.id}/ver`}>Ver</Link>
+                  <Link to={`/admin/ventas/${v.id}/editar`}>Editar</Link>
+                </td>
               </tr>
             ))}
           </tbody>

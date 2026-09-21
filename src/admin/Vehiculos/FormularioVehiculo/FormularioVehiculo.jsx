@@ -15,6 +15,7 @@ function FormularioVehiculo() {
     model: "",
     year: "",
     price: "",
+    price_cash: "",
     km: "",
     color: "",
     plate: "",
@@ -42,6 +43,7 @@ function FormularioVehiculo() {
           model: vehiculo.model,
           year: vehiculo.year,
           price: vehiculo.price,
+          price_cash: vehiculo.price_cash || "",
           km: vehiculo.km,
           color: vehiculo.color || "",
           plate: vehiculo.plate || "", 
@@ -93,11 +95,16 @@ function FormularioVehiculo() {
         ...datos,
         year: Number(datos.year),
         price: Number(datos.price),
+        price_cash: datos.price_cash ? Number(datos.price_cash) : null,
         km: Number(datos.km)
       })
     })
       .then(res => {
-        if (!res.ok) throw new Error("No se pudo guardar el vehículo")
+        if (!res.ok) {
+          return res.json().then(data => {
+            throw new Error(data.detail || "No se pudo guardar el vehículo")
+          })
+        }
         navigate("/admin/vehiculos")
       })
       .catch(err => {
@@ -143,10 +150,14 @@ function FormularioVehiculo() {
       method: "DELETE"
     })
       .then(res => {
-        if (!res.ok) throw new Error()
+        if (!res.ok) {
+          return res.json().then(data => {
+            throw new Error(data.detail || "No se pudo borrar la foto")
+          })
+        }
         setFotos(fotos.filter((f) => f.id !== photoId))
       })
-      .catch(() => alert("No se pudo borrar la foto"))
+      .catch(err => alert(err.message))
   }
 
   function marcarPrincipal(photoId) {
@@ -154,13 +165,17 @@ function FormularioVehiculo() {
       method: "PATCH"
     })
       .then(res => {
-        if (!res.ok) throw new Error()
+        if (!res.ok) {
+          return res.json().then(data => {
+            throw new Error(data.detail || "No se pudo actualizar la foto principal")
+          })
+        }
         setFotos(fotos.map((f) => ({
           ...f,
           is_main: f.id === photoId
         })))
       })
-      .catch(() => alert("No se pudo actualizar la foto principal"))
+      .catch(err => alert(err.message))
   }
 
   if (cargando) return <p>Cargando...</p>
@@ -202,12 +217,22 @@ function FormularioVehiculo() {
           </div>
 
           <div className="form-campo">
-            <label>Precio</label>
+            <label>Precio Permuta</label>
             <input
               type="number"
               value={datos.price}
               onChange={(e) => manejarCambio("price", e.target.value)}
               required
+            />
+          </div>
+
+          <div className="form-campo">
+            <label>Precio Contado</label>
+            <input
+              type="number"
+              value={datos.price_cash}
+              onChange={(e) => manejarCambio("price_cash", e.target.value)}
+              placeholder="Opcional"
             />
           </div>
 

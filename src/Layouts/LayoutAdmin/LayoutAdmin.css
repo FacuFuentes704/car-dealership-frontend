@@ -82,3 +82,17 @@
   padding: 32px;
   overflow-x: auto;
 }
+
+@media print {
+  .sidebar {
+    display: none;
+  }
+
+  .contenido-admin {
+    padding: 0;
+  }
+
+  .layout-admin {
+    display: block;
+  }
+}

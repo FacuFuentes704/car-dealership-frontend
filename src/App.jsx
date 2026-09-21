@@ -14,13 +14,15 @@ import LayoutPublico from './Layouts/LayoutPublico/LayoutPublico'
 import AdminVehiculos from './admin/Vehiculos/AdminVehiculos/AdminVehiculos'
 import FormularioVehiculo from './admin/Vehiculos/FormularioVehiculo/FormularioVehiculo'
 import VerVehiculo from './admin/VerVehiculo/VerVehiculo'
+import PlanillaVehiculos from './admin/Vehiculos/PlanillaVehiculos/PlanillaVehiculos'
 import AdminClientes from './admin/Clientes/ClientesAdmin/AdminClientes'
 import FormularioCliente from './admin/Clientes/FormularioClientes/FormularioClientes'
 import VerCliente from './admin/Clientes/VerClientes/VerClientes'
 import GestionInteresesCliente from './admin/Intereses/GestionIntereses/GestionInteresesCliente'
 import GestionInteresesVehiculo from './admin/Intereses/GestionIntereses/GestionInteresesVehiculo'
-import AdminVentas from './admin/Ventas/AdminVentas/AdminVentas'
 import FormularioVenta from './admin/Ventas/FormularioVentas/FormularioVentas'
+import AdminVentas from './admin/Ventas/AdminVentas/AdminVentas'
+import VerVenta from './admin/Ventas/VerVentas/VerVentas'
 
 function App() {
   const [modoOscuro, setModoOscuro] = useState(false)
@@ -58,6 +60,7 @@ function App() {
         <Route path="/admin/vehiculos/nuevo" element={<FormularioVehiculo />} />
         <Route path="/admin/vehiculos/:id/editar" element={<FormularioVehiculo />} />
         <Route path="/admin/vehiculos/:id/ver" element={<VerVehiculo />} />
+        <Route path="/admin/vehiculos/planilla" element={<PlanillaVehiculos />} />
         <Route path="/admin/clientes" element={<AdminClientes />} />
         <Route path="/admin/clientes/nuevo" element={<FormularioCliente />} />
         <Route path="/admin/clientes/:id/editar" element={<FormularioCliente />} />
@@ -66,6 +69,8 @@ function App() {
         <Route path="/admin/vehiculos/:id/intereses" element={<GestionInteresesVehiculo />} />
         <Route path="/admin/ventas/" element={<AdminVentas />} />
         <Route path="/admin/ventas/nueva" element={<FormularioVenta />} />
+        <Route path="/admin/ventas/:id/editar" element={<FormularioVenta />} />
+        <Route path="/admin/ventas/:id/ver" element={<VerVenta />} />
       </Route>
     </Routes>
   )

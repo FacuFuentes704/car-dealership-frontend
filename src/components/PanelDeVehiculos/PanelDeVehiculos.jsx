@@ -13,6 +13,7 @@ function PanelDeVehiculos({ condition, offer }) {
   const [anio, setAnio] = useState("")
   const [precioMin, setPrecioMin] = useState("")
   const [precioMax, setPrecioMax] = useState("")
+  const [busquedaDebounced, setBusquedaDebounced] = useState("")
 
   const anioActual = new Date().getFullYear()
   const anios = []
@@ -21,11 +22,19 @@ function PanelDeVehiculos({ condition, offer }) {
   }
 
   useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setBusquedaDebounced(busqueda)
+    }, 400)
+
+    return () => clearTimeout(timeoutId)
+  }, [busqueda])
+
+  useEffect(() => {
     setCargando(true)
     let url = `${API_URL}/vehicles/?status=available`
     if (condition) url += `&condition=${condition}`
     if (offer) url += `&is_offer=true`
-    if (busqueda) url += `&search=${busqueda}`
+    if (busquedaDebounced) url += `&search=${busquedaDebounced}`
     if (transmision) url += `&transmission=${transmision}`
     if (anio) url += `&year=${anio}`
     if (precioMin) url += `&price_min=${precioMin}`
@@ -34,7 +43,9 @@ function PanelDeVehiculos({ condition, offer }) {
     fetch(url)
       .then(res => {
         if (!res.ok) {
-          throw new Error("Error al traer los vehiculos")
+          return res.json().then(data => {
+            throw new Error(data.detail || "Error al traer los vehiculos")
+          })
         }
         return res.json()
       })
@@ -46,7 +57,7 @@ function PanelDeVehiculos({ condition, offer }) {
         setError(err.message)
         setCargando(false)
       })
-  }, [condition, offer, busqueda, transmision, anio, precioMin, precioMax])
+  }, [condition, offer, busquedaDebounced, transmision, anio, precioMin, precioMax])
 
   return (
     <div>

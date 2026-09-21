@@ -1,0 +1,47 @@
+.planilla {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.planilla-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.tabla-planilla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-planilla th,
+.tabla-planilla td {
+  border: 1px solid #333;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.solo-imprimir {
+  display: none;
+}
+
+@media print {
+  .no-imprimir {
+    display: none;
+  }
+
+  .solo-imprimir {
+    display: block;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .tabla-planilla {
+    color: black;
+  }
+}

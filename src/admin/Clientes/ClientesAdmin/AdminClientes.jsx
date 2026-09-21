@@ -13,15 +13,28 @@ function AdminClientes() {
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
   const [busqueda, setBusqueda] = useState("")
+  const [busquedaDebounced, setBusquedaDebounced] = useState("")
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setBusquedaDebounced(busqueda)
+    }, 400)
+
+    return () => clearTimeout(timeoutId)
+  }, [busqueda])
 
   useEffect(() => {
     let url = `${API_URL}/clients/?only_active=false`
     if (statusFiltro) url += `&status=${statusFiltro}`
-    if (busqueda) url += `&search=${busqueda}`
+    if (busquedaDebounced) url += `&search=${busquedaDebounced}`
 
     fetchConToken(url)
       .then(res => {
-        if (!res.ok) throw new Error("Error al traer los clientes")
+        if (!res.ok) {
+          return res.json().then(data => {
+            throw new Error(data.detail || "Error al traer los clientes")
+          })
+        }
         return res.json()
       })
       .then(datos => {
@@ -32,7 +45,7 @@ function AdminClientes() {
         setError(err.message)
         setCargando(false)
       })
-  }, [statusFiltro, busqueda])
+  }, [statusFiltro, busquedaDebounced])
 
   function darDeBaja(id) {
     fetchConToken(`${API_URL}/clients/${id}`, { method: "DELETE" })
@@ -40,6 +53,25 @@ function AdminClientes() {
         if (!res.ok) throw new Error("No se pudo dar de baja")
         setClientes(clientes.map((c) =>
           c.id === id ? { ...c, is_active: false } : c
+        ))
+      })
+      .catch(err => alert(err.message))
+  }
+
+  function cambiarActivo(id, activo) {
+    fetchConToken(`${API_URL}/clients/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ is_active: activo })
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(data => {
+            throw new Error(data.detail || "No se pudo actualizar el cliente")
+          })
+        }
+        setClientes(clientes.map((c) =>
+          c.id === id ? { ...c, is_active: activo } : c
         ))
       })
       .catch(err => alert(err.message))
@@ -113,9 +145,13 @@ function AdminClientes() {
                   <Link to={`/admin/clientes/${c.id}/ver`}>Ver</Link>
                   <Link to={`/admin/clientes/${c.id}/editar`}>Editar</Link>
                   <Link to={`/admin/clientes/${c.id}/intereses`}>Intereses</Link>
-                  {c.is_active && (
+                  {c.is_active ? (
                     <button onClick={() => darDeBaja(c.id)} className="boton-baja">
                       Dar de baja
+                    </button>
+                  ) : (
+                    <button onClick={() => cambiarActivo(c.id, true)} className="boton-baja">
+                      Reactivar
                     </button>
                   )}
                 </td>
