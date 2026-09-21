@@ -25,7 +25,12 @@ function VerVenta() {
     <div className="ver-venta-detalle">
       <div className="ver-header">
         <h1>Venta #{venta.id}</h1>
-        <Link to="/admin/ventas">← Volver</Link>
+        <div className="ver-header-acciones">
+          <Link to={`/admin/ventas/${id}/boleto`} className="boton-editar-desde-ver">
+            Generar boleto
+          </Link>
+          <Link to="/admin/ventas">← Volver</Link>
+        </div>
       </div>
 
       <div className="ver-datos">

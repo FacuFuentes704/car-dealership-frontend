@@ -23,6 +23,8 @@ import GestionInteresesVehiculo from './admin/Intereses/GestionIntereses/Gestion
 import FormularioVenta from './admin/Ventas/FormularioVentas/FormularioVentas'
 import AdminVentas from './admin/Ventas/AdminVentas/AdminVentas'
 import VerVenta from './admin/Ventas/VerVentas/VerVentas'
+import ConfiguracionAgencia from './admin/Agencia/ConfiguracionAgencia/ConfiguracionAgencia'
+import BoletoVenta from './admin/Boleto/BoletoVenta'
 
 function App() {
   const [modoOscuro, setModoOscuro] = useState(false)
@@ -71,6 +73,8 @@ function App() {
         <Route path="/admin/ventas/nueva" element={<FormularioVenta />} />
         <Route path="/admin/ventas/:id/editar" element={<FormularioVenta />} />
         <Route path="/admin/ventas/:id/ver" element={<VerVenta />} />
+        <Route path="/admin/ventas/:id/boleto" element={<BoletoVenta />} />
+        <Route path="/admin/configuracion" element={<ConfiguracionAgencia />} />
       </Route>
     </Routes>
   )

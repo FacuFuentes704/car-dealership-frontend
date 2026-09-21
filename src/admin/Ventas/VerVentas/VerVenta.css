@@ -14,3 +14,9 @@
   font-size: 26px;
   font-weight: 700;
 }
+
+.ver-header-acciones {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

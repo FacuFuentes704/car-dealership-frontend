@@ -25,6 +25,7 @@ function LayoutAdmin({ modoOscuro, setModoOscuro }) {
           <Link to="/admin/vehiculos">Vehículos</Link>
           <Link to="/admin/clientes">Clientes</Link>
           <Link to="/admin/ventas">Ventas</Link>
+          <Link to="/admin/configuracion">Configuración</Link>
         </nav>
 
         <button onClick={() => setModoOscuro(!modoOscuro)} className="sidebar-toggle-tema">

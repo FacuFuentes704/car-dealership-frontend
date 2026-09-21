@@ -105,6 +105,7 @@ function AdminVentas() {
                 <td>
                   <Link to={`/admin/ventas/${v.id}/ver`}>Ver</Link>
                   <Link to={`/admin/ventas/${v.id}/editar`}>Editar</Link>
+                  <Link to={`/admin/ventas/${v.id}/boleto`}>Boleto</Link>
                 </td>
               </tr>
             ))}

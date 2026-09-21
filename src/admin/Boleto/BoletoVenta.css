@@ -1,0 +1,156 @@
+.boleto-acciones {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.boleto-acciones button {
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.boleto {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  padding: 32px;
+  border: 1px solid var(--border);
+}
+
+.boleto-titulo {
+  text-align: center;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.boleto-parrafo {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.boleto-clausula {
+  margin: 16px 0 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.boleto-texto {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+
+.boleto-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+}
+
+.boleto-tabla td,
+.boleto-tabla th {
+  border: 1px solid #333;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.boleto-label {
+  font-weight: 700;
+  width: 15%;
+}
+
+.boleto-tabla-pago td:last-child {
+  text-align: right;
+  width: 150px;
+}
+
+.boleto-input {
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 4px 8px;
+  font-size: 13px;
+  width: 150px;
+}
+
+.boleto-input-inline {
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 2px 6px;
+  font-size: 13px;
+  width: 80px;
+  margin: 0 4px;
+}
+
+.solo-imprimir {
+  display: none;
+}
+
+.boleto-firmas {
+  display: flex;
+  justify-content: space-around;
+  margin: 48px 0 24px;
+}
+
+.boleto-firma {
+  text-align: center;
+}
+
+.boleto-linea-firma {
+  width: 200px;
+  border-bottom: 1px solid #333;
+  margin-bottom: 6px;
+}
+
+.boleto-tabla-partes th {
+  background-color: var(--border);
+  text-align: center;
+}
+
+.boleto-observaciones {
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+@media print {
+  .no-imprimir {
+    display: none;
+  }
+
+  .solo-imprimir {
+    display: inline;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .boleto {
+    border: none;
+    padding: 0;
+    color: black;
+  }
+
+  .boleto-titulo {
+    background-color: #1a1a1a !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .boleto-tabla td,
+  .boleto-tabla th {
+    border: 1px solid black;
+    color: black;
+  }
+}
