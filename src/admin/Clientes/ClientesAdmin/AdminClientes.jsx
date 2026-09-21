@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
-import { API_URL } from '../../config'
-import { fetchConToken } from '../../utils/fetchConToken'
+import { API_URL } from '../../../config'
+import { fetchConToken } from '../../../utils/fetchConToken'
+import { TRADUCCIONES_STATUS_CLIENTE } from '../../traducciones'
 import './AdminClientes.css'
 
 function AdminClientes() {
@@ -104,7 +105,7 @@ function AdminClientes() {
                 <td>{c.phone || "-"}</td>
                 <td>{c.email || "-"}</td>
                 <td>
-                  <span className={`badge badge-cliente-${c.status}`}>{c.status}</span>
+                  <span className={`badge badge-cliente-${c.status}`}>{TRADUCCIONES_STATUS_CLIENTE[c.status]}</span>
                 </td>
                 <td>{c.is_active ? "Sí" : "No"}</td>
                 <td>{new Date(c.created_at).toLocaleDateString('es-AR')}</td>

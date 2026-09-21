@@ -11,14 +11,16 @@ import Financiacion from './components/Financiacion/Financiacion'
 import Login from './admin/Login/Login'
 import Dashboard from './admin/Dashboard/Dashboard'
 import LayoutPublico from './Layouts/LayoutPublico/LayoutPublico'
-import AdminVehiculos from './admin/Vehiculos/AdminVehiculos'
-import FormularioVehiculo from './admin/FormularioVehiculo/FormularioVehiculo'
+import AdminVehiculos from './admin/Vehiculos/AdminVehiculos/AdminVehiculos'
+import FormularioVehiculo from './admin/Vehiculos/FormularioVehiculo/FormularioVehiculo'
 import VerVehiculo from './admin/VerVehiculo/VerVehiculo'
-import AdminClientes from './admin/ClientesAdmin/AdminClientes'
-import FormularioCliente from './admin/FormularioClientes/FormularioClientes'
-import VerCliente from './admin/VerClientes/VerClientes'
-import GestionInteresesCliente from './admin/GestionIntereses/GestionInteresesCliente'
-import GestionInteresesVehiculo from './admin/GestionIntereses/GestionInteresesVehiculo'
+import AdminClientes from './admin/Clientes/ClientesAdmin/AdminClientes'
+import FormularioCliente from './admin/Clientes/FormularioClientes/FormularioClientes'
+import VerCliente from './admin/Clientes/VerClientes/VerClientes'
+import GestionInteresesCliente from './admin/Intereses/GestionIntereses/GestionInteresesCliente'
+import GestionInteresesVehiculo from './admin/Intereses/GestionIntereses/GestionInteresesVehiculo'
+import AdminVentas from './admin/Ventas/AdminVentas/AdminVentas'
+import FormularioVenta from './admin/Ventas/FormularioVentas/FormularioVentas'
 
 function App() {
   const [modoOscuro, setModoOscuro] = useState(false)
@@ -62,6 +64,8 @@ function App() {
         <Route path="/admin/clientes/:id/ver" element={<VerCliente />} />
         <Route path="/admin/clientes/:id/intereses" element={<GestionInteresesCliente />} />
         <Route path="/admin/vehiculos/:id/intereses" element={<GestionInteresesVehiculo />} />
+        <Route path="/admin/ventas/" element={<AdminVentas />} />
+        <Route path="/admin/ventas/nueva" element={<FormularioVenta />} />
       </Route>
     </Routes>
   )

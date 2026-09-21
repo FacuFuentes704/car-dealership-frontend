@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
-import { API_URL } from '../../config'
-import { fetchConToken } from '../../utils/fetchConToken'
+import { API_URL } from '../../../config'
+import { fetchConToken } from '../../../utils/fetchConToken'
+import { TRADUCCIONES_STATUS_VEHICULO } from '../../traducciones'
 import './AdminVehiculos.css'
 
 function AdminVehiculos() {
@@ -115,7 +116,7 @@ function AdminVehiculos() {
                 <td>{v.year}</td>
                 <td>${Number(v.price).toLocaleString('es-AR')}</td>
                 <td>
-                  <span className={`badge badge-${v.status}`}>{v.status}</span>
+                  <span className={`badge badge-${v.status}`}>{TRADUCCIONES_STATUS_VEHICULO[v.status]}</span>
                 </td>
                 <td>{v.is_active ? "Sí" : "No"}</td>
                 <td>{new Date(v.created_at).toLocaleDateString('es-AR')}</td>
