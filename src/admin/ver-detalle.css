@@ -32,6 +32,15 @@
   border-color: var(--primario);
 }
 
+.interes-item a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.interes-item a:hover {
+  text-decoration: underline;
+}
+
 .sin-intereses {
   font-size: 14px;
   opacity: 0.6;

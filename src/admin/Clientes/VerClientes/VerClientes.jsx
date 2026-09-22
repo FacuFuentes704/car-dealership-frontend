@@ -72,26 +72,23 @@ function VerCliente() {
         </Link>
       </div>
 
-      <div className="ver-ventas-cliente">
-        <h2>Compras realizadas</h2>
-        {cliente.sales && cliente.sales.length > 0 ? (
+      {cliente.sales && cliente.sales.length > 0 && (
+        <div className="ver-ventas-cliente">
+          <h2>Compras</h2>
           <div className="intereses-lista">
             {cliente.sales.map((venta) => (
-              <Link
-                key={venta.id}
-                to={`/admin/vehiculos/${venta.vehicle.id}/ver`}
-                className="interes-item"
-              >
-                <strong>{venta.vehicle.brand} {venta.vehicle.model}</strong>
+              <div key={venta.id} className="interes-item">
+                <Link to={`/admin/vehiculos/${venta.vehicle.id}/ver`}>
+                  <strong>{venta.vehicle.brand} {venta.vehicle.model}</strong>
+                </Link>
                 <span>${Number(venta.sale_price).toLocaleString('es-AR')}</span>
                 <span>{new Date(venta.sale_date || venta.created_at).toLocaleDateString('es-AR')}</span>
-              </Link>
+                <Link to={`/admin/ventas/${venta.id}/ver`}>Ver venta</Link>
+              </div>
             ))}
           </div>
-        ) : (
-          <p className="sin-intereses">Sin compras registradas todavía.</p>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   )
 }

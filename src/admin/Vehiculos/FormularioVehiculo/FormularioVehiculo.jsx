@@ -4,6 +4,11 @@ import { API_URL } from '../../../config'
 import { fetchConToken } from '../../../utils/fetchConToken'
 import '../../formularios.css'
 import './FormularioVehiculo.css'
+import { CARACTERISTICAS_VEHICULO } from '../../caracteristicasVehiculo'
+
+function crearFeaturesPorDefecto() {
+  return Object.fromEntries(CARACTERISTICAS_VEHICULO.map((c) => [c.key, false]))
+}
 
 function FormularioVehiculo() {
   const { id } = useParams()
@@ -25,7 +30,8 @@ function FormularioVehiculo() {
     status: "available",
     condition: "used",
     is_offer: false,
-    is_active: true
+    is_active: true,
+    features: crearFeaturesPorDefecto()
   })
   const [fotos, setFotos] = useState([])
   const [cargando, setCargando] = useState(esEdicion)
@@ -53,7 +59,8 @@ function FormularioVehiculo() {
           status: vehiculo.status,
           condition: vehiculo.condition,
           is_offer: vehiculo.is_offer,
-          is_active: vehiculo.is_active
+          is_active: vehiculo.is_active,
+          features: { ...crearFeaturesPorDefecto(), ...(vehiculo.features || {}) }
         })
         setFotos(vehiculo.photos || [])
         setCargando(false)
@@ -75,6 +82,10 @@ function FormularioVehiculo() {
 
   function manejarCambio(campo, valor) {
     setDatos({ ...datos, [campo]: valor })
+  }
+
+  function manejarCambioFeature(key, valor) {
+    setDatos({ ...datos, features: { ...datos.features, [key]: valor } })
   }
 
   function manejarSubmit(e) {
@@ -335,6 +346,24 @@ function FormularioVehiculo() {
               </label>
             </div>
           )}
+        </div>
+
+        <div className="form-campo form-descripcion">
+          <label>Equipamiento</label>
+          <div className="form-grid">
+            {CARACTERISTICAS_VEHICULO.map((c) => (
+              <div key={c.key} className="form-campo form-checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={datos.features[c.key]}
+                    onChange={(e) => manejarCambioFeature(c.key, e.target.checked)}
+                  />
+                  {c.label}
+                </label>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="form-campo form-descripcion">

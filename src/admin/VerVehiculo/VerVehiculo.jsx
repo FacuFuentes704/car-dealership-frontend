@@ -9,6 +9,7 @@ import {
   TRADUCCIONES_STATUS_VEHICULO,
   TRADUCCIONES_STATUS_CLIENTE
 } from '../traducciones'
+import { CARACTERISTICAS_VEHICULO } from '../caracteristicasVehiculo'
 import './VerVehiculo.css'
 import '../ver-detalle.css'
 
@@ -72,6 +73,12 @@ function VerVehiculo() {
             {" "}el {new Date(vehiculo.sale.sale_date || vehiculo.sale.created_at).toLocaleDateString('es-AR')}
             {" "}por ${Number(vehiculo.sale.sale_price).toLocaleString('es-AR')}
           </p>
+          <p>
+            <Link to={`/admin/ventas/${vehiculo.sale.id}/ver`}>Ver venta</Link>
+          </p>
+          <Link to={`/admin/ventas/${vehiculo.sale.id}/boleto`} className="boton-editar-desde-ver">
+            {vehiculo.sale.boleto_generado ? "Ver boleto" : "Generar boleto"}
+          </Link>
         </div>
       )}
 
@@ -79,6 +86,17 @@ function VerVehiculo() {
         <div className="ver-descripcion">
           <h2>Descripción</h2>
           <p>{vehiculo.description}</p>
+        </div>
+      )}
+
+      {vehiculo.features && Object.values(vehiculo.features).some(Boolean) && (
+        <div className="ver-descripcion">
+          <h2>Equipamiento</h2>
+          <ul>
+            {CARACTERISTICAS_VEHICULO.filter((c) => vehiculo.features[c.key]).map((c) => (
+              <li key={c.key}>{c.label}</li>
+            ))}
+          </ul>
         </div>
       )}
 

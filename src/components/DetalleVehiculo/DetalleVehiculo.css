@@ -131,3 +131,16 @@
   line-height: 1.6;
   opacity: 0.75;
 }
+
+.detalle-equipamiento-lista {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.detalle-equipamiento-lista li {
+  font-size: 15px;
+  opacity: 0.85;
+}

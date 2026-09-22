@@ -70,6 +70,21 @@
 .boleto-tabla-pago td:last-child {
   text-align: right;
   width: 150px;
+  max-width: 150px;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.boleto-campo-monto {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.boleto-campo-monto-textarea {
+  align-items: flex-start;
 }
 
 .boleto-input {
@@ -79,6 +94,12 @@
   padding: 4px 8px;
   font-size: 13px;
   width: 150px;
+}
+
+.boleto-tabla-pago .boleto-input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .boleto-input-inline {
@@ -93,6 +114,14 @@
 
 .solo-imprimir {
   display: none;
+}
+
+.boleto.modo-solo-lectura .no-imprimir {
+  display: none;
+}
+
+.boleto.modo-solo-lectura .solo-imprimir {
+  display: inline;
 }
 
 .boleto-firmas {

@@ -81,7 +81,11 @@
   margin-bottom: 8px;
 }
 
-.ver-venta a {
-  color: var(--primario);
-  font-weight: 500;
+.ver-venta p {
+  margin-bottom: 8px;
+}
+
+.boton-editar-desde-ver {
+  display: inline-block;
+  margin-top: 8px;
 }

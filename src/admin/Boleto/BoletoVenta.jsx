@@ -13,6 +13,7 @@ function BoletoVenta() {
   const [cargando, setCargando] = useState(true)
   const [guardando, setGuardando] = useState(false)
   const [error, setError] = useState(null)
+  const [modoEdicion, setModoEdicion] = useState(false)
 
   const [datosExtra, setDatosExtra] = useState({
     engine_number: "",
@@ -37,18 +38,19 @@ function BoletoVenta() {
       .then(([ventaData, agenciaData]) => {
         setVenta(ventaData)
         setAgencia(agenciaData)
+        setModoEdicion(!ventaData.boleto_generado)
         setDatosExtra({
           engine_number: ventaData.vehicle.engine_number || "",
           chassis_number: ventaData.vehicle.chassis_number || "",
           client_address: ventaData.client.address || "",
           client_locality: ventaData.client.locality || "",
           client_document_number: ventaData.client.document_number || "",
-          reserva_amount: ventaData.reserva_amount || "",
-          entrega_amount: ventaData.entrega_amount || "",
-          otros_amount: ventaData.otros_amount || "",
-          saldo_financiado: ventaData.saldo_financiado || "",
-          cantidad_cuotas: ventaData.cantidad_cuotas || "",
-          monto_cuota: ventaData.monto_cuota || "",
+          reserva_amount: ventaData.reserva_amount ?? "",
+          entrega_amount: ventaData.entrega_amount ?? "",
+          otros_amount: ventaData.otros_amount ?? "",
+          saldo_financiado: ventaData.saldo_financiado ?? "",
+          cantidad_cuotas: ventaData.cantidad_cuotas ?? "",
+          monto_cuota: ventaData.monto_cuota ?? "",
           fecha_primera_cuota: ventaData.fecha_primera_cuota ? ventaData.fecha_primera_cuota.split("T")[0] : ""
         })
         setCargando(false)
@@ -91,7 +93,7 @@ function BoletoVenta() {
           boleto_generado: true,
           reserva_amount: datosExtra.reserva_amount ? Number(datosExtra.reserva_amount) : null,
           entrega_amount: datosExtra.entrega_amount ? Number(datosExtra.entrega_amount) : null,
-          otros_amount: datosExtra.otros_amount ? Number(datosExtra.otros_amount) : null,
+          otros_amount: datosExtra.otros_amount || null,
           saldo_financiado: datosExtra.saldo_financiado ? Number(datosExtra.saldo_financiado) : null,
           cantidad_cuotas: datosExtra.cantidad_cuotas ? Number(datosExtra.cantidad_cuotas) : null,
           monto_cuota: datosExtra.monto_cuota ? Number(datosExtra.monto_cuota) : null,
@@ -100,6 +102,8 @@ function BoletoVenta() {
       })
     ])
       .then(() => {
+        setVenta(prev => ({ ...prev, boleto_generado: true }))
+        setModoEdicion(false)
         setGuardando(false)
         window.print()
       })
@@ -116,12 +120,19 @@ function BoletoVenta() {
     <div className="boleto-contenedor">
       <div className="boleto-acciones no-imprimir">
         <button onClick={() => navigate(`/admin/ventas/${id}/ver`)}>← Volver</button>
-        <button onClick={guardarYMarcar} disabled={guardando} className="boton-guardar">
-          {guardando ? "Guardando..." : "Guardar e Imprimir"}
-        </button>
+        {modoEdicion ? (
+          <button onClick={guardarYMarcar} disabled={guardando} className="boton-guardar">
+            {guardando ? "Guardando..." : (venta.boleto_generado ? "Guardar cambios" : "Guardar e Imprimir")}
+          </button>
+        ) : (
+          <>
+            <button onClick={() => setModoEdicion(true)}>Editar</button>
+            <button onClick={() => window.print()} className="boton-guardar">Imprimir</button>
+          </>
+        )}
       </div>
 
-      <div className="boleto">
+      <div className={`boleto${modoEdicion ? "" : " modo-solo-lectura"}`}>
         <h1 className="boleto-titulo">CERTIFICADO DE VENTA Y/O PERMUTA</h1>
 
         <p className="boleto-parrafo">
@@ -190,12 +201,14 @@ function BoletoVenta() {
             <tr>
               <td>CONTADO: Valor tomado por reserva unidad</td>
               <td>
-                $ <input
-                  type="number"
-                  className="boleto-input no-imprimir"
-                  value={datosExtra.reserva_amount}
-                  onChange={(e) => manejarCambio("reserva_amount", e.target.value)}
-                />
+                <div className="boleto-campo-monto">
+                  $ <input
+                    type="number"
+                    className="boleto-input no-imprimir"
+                    value={datosExtra.reserva_amount}
+                    onChange={(e) => manejarCambio("reserva_amount", e.target.value)}
+                  />
+                </div>
                 <span className="solo-imprimir">
                   {datosExtra.reserva_amount ? Number(datosExtra.reserva_amount).toLocaleString('es-AR') : "-"}
                 </span>
@@ -204,12 +217,14 @@ function BoletoVenta() {
             <tr>
               <td>ENTREGA EFECTIVO C/ENTREGA UNIDAD:</td>
               <td>
-                $ <input
-                  type="number"
-                  className="boleto-input no-imprimir"
-                  value={datosExtra.entrega_amount}
-                  onChange={(e) => manejarCambio("entrega_amount", e.target.value)}
-                />
+                <div className="boleto-campo-monto">
+                  $ <input
+                    type="number"
+                    className="boleto-input no-imprimir"
+                    value={datosExtra.entrega_amount}
+                    onChange={(e) => manejarCambio("entrega_amount", e.target.value)}
+                  />
+                </div>
                 <span className="solo-imprimir">
                   {datosExtra.entrega_amount ? Number(datosExtra.entrega_amount).toLocaleString('es-AR') : "-"}
                 </span>
@@ -218,26 +233,31 @@ function BoletoVenta() {
             <tr>
               <td>OTROS:</td>
               <td>
-                $ <input
-                  type="number"
-                  className="boleto-input no-imprimir"
-                  value={datosExtra.otros_amount}
-                  onChange={(e) => manejarCambio("otros_amount", e.target.value)}
-                />
+                <div className="boleto-campo-monto boleto-campo-monto-textarea">
+                  <textarea
+                    rows={2}
+                    maxLength={300}
+                    className="boleto-input no-imprimir"
+                    value={datosExtra.otros_amount}
+                    onChange={(e) => manejarCambio("otros_amount", e.target.value)}
+                  />
+                </div>
                 <span className="solo-imprimir">
-                  {datosExtra.otros_amount ? Number(datosExtra.otros_amount).toLocaleString('es-AR') : "-"}
+                  {datosExtra.otros_amount || "-"}
                 </span>
               </td>
             </tr>
             <tr>
               <td>SALDO A PAGAR FINANCIADO:</td>
               <td>
-                $ <input
-                  type="number"
-                  className="boleto-input no-imprimir"
-                  value={datosExtra.saldo_financiado}
-                  onChange={(e) => manejarCambio("saldo_financiado", e.target.value)}
-                />
+                <div className="boleto-campo-monto">
+                  $ <input
+                    type="number"
+                    className="boleto-input no-imprimir"
+                    value={datosExtra.saldo_financiado}
+                    onChange={(e) => manejarCambio("saldo_financiado", e.target.value)}
+                  />
+                </div>
                 <span className="solo-imprimir">
                   {datosExtra.saldo_financiado ? Number(datosExtra.saldo_financiado).toLocaleString('es-AR') : "-"}
                 </span>

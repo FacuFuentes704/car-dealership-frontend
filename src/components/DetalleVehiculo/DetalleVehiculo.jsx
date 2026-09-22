@@ -4,6 +4,7 @@ import BotonWhatsApp from "../BotonWhatsapp/BotonWhatsapp"
 import './DetalleVehiculo.css'
 import { API_URL } from '../../config'
 import { TRADUCCIONES_FUEL_TYPE, TRADUCCIONES_TRANSMISSION } from '../../admin/traducciones'
+import { CARACTERISTICAS_VEHICULO } from '../../admin/caracteristicasVehiculo'
 
 function DetalleVehiculo() {
   const { id } = useParams()
@@ -99,6 +100,17 @@ function DetalleVehiculo() {
         <div className="detalle-descripcion">
           <h2>Descripción</h2>
           <p>{vehiculo.description}</p>
+        </div>
+      )}
+
+      {vehiculo.features && Object.values(vehiculo.features).some(Boolean) && (
+        <div className="detalle-descripcion">
+          <h2>Equipamiento</h2>
+          <ul className="detalle-equipamiento-lista">
+            {CARACTERISTICAS_VEHICULO.filter((c) => vehiculo.features[c.key]).map((c) => (
+              <li key={c.key}>{c.label}</li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
