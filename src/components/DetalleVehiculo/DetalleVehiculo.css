@@ -35,12 +35,16 @@
   height: 400px;
   overflow: hidden;
   margin-bottom: 12px;
+  background-color: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .galeria-principal img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .galeria-sin-foto {
