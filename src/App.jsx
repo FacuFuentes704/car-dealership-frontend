@@ -26,6 +26,7 @@ import VerVenta from './admin/Ventas/VerVentas/VerVentas'
 import ConfiguracionAgencia from './admin/Agencia/ConfiguracionAgencia/ConfiguracionAgencia'
 import BoletoVenta from './admin/Boleto/BoletoVenta'
 import HistorialBoletos from './admin/Boletos/HistorialBoletos/HistorialBoletos'
+import PoliticaPrivacidad from './Privacidad/PoliticaPrivacidad'
 
 function App() {
   const [modoOscuro, setModoOscuro] = useState(false)
@@ -43,6 +44,7 @@ function App() {
       <Route element={<LayoutPublico modoOscuro={modoOscuro} setModoOscuro={setModoOscuro} />}>
         <Route path="/" element={<Home />} />
         <Route path="/vehiculo/:id" element={<DetalleVehiculo />} />
+        <Route path="/privacidad" element={<PoliticaPrivacidad />} />
         <Route path="/0km" element={<Pagina0km />} />
         <Route path="/usados" element={<PaginaUsados />} />
         <Route path="/ofertas" element={<PaginaOfertas />} />

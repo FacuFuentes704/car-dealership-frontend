@@ -21,6 +21,9 @@ function Login() {
       body: JSON.stringify({ email, password })
     })
       .then(res => {
+        if (res.status === 429) {
+          throw new Error("Demasiados intentos. Esperá un minuto e intentá de nuevo.")
+        }
         if (!res.ok) {
           return res.json().then(data => {
             throw new Error(data.detail || "Email o contraseña incorrectos")

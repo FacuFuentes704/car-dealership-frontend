@@ -78,6 +78,7 @@ function Footer() {
 
       <div className="footer-bottom container">
         <p>© {new Date().getFullYear()} LGi Motors. Todos los derechos reservados.</p>
+        <Link to="/privacidad" className="footer-link-legal">Política de Privacidad</Link>
       </div>
     </footer>
   )
