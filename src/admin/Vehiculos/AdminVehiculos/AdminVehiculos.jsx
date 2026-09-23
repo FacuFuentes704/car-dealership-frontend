@@ -150,7 +150,7 @@ function AdminVehiculos() {
                 <td>{v.brand}</td>
                 <td>{v.model}</td>
                 <td>{v.year}</td>
-                <td>${Number(v.price).toLocaleString('es-AR')}</td>
+                <td>{v.price ? `$${Number(v.price).toLocaleString('es-AR')}` : "Consultar precio"}</td>
                 <td>{v.price_cash ? `$${Number(v.price_cash).toLocaleString('es-AR')}` : "-"}</td>
                 <td>
                   <span className={`badge badge-${v.status}`}>{TRADUCCIONES_STATUS_VEHICULO[v.status]}</span>

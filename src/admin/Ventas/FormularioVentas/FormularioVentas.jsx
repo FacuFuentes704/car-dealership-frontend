@@ -124,7 +124,7 @@ function FormularioVenta() {
             <option value="">Elegir vehículo...</option>
             {vehiculosDisponibles.map((v) => (
               <option key={v.id} value={v.id}>
-                {v.brand} {v.model} ({v.year}) — Patente: {v.plate || "sin patente"} — ${Number(v.price).toLocaleString('es-AR')}
+                {v.brand} {v.model} ({v.year}) — Patente: {v.plate || "sin patente"} — {v.price ? `$${Number(v.price).toLocaleString('es-AR')}` : "Consultar precio"}
               </option>
             ))}
           </select>

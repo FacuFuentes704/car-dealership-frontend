@@ -48,7 +48,7 @@ function FormularioVehiculo() {
           brand: vehiculo.brand,
           model: vehiculo.model,
           year: vehiculo.year,
-          price: vehiculo.price,
+          price: vehiculo.price || "",
           price_cash: vehiculo.price_cash || "",
           km: vehiculo.km,
           color: vehiculo.color || "",
@@ -105,7 +105,7 @@ function FormularioVehiculo() {
       body: JSON.stringify({
         ...datos,
         year: Number(datos.year),
-        price: Number(datos.price),
+        price: datos.price ? Number(datos.price) : null,
         price_cash: datos.price_cash ? Number(datos.price_cash) : null,
         km: Number(datos.km)
       })
@@ -233,7 +233,6 @@ function FormularioVehiculo() {
               type="number"
               value={datos.price}
               onChange={(e) => manejarCambio("price", e.target.value)}
-              required
             />
           </div>
 

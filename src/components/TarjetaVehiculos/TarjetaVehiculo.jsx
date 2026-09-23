@@ -16,7 +16,7 @@ function TarjetaVehiculo(props) {
           )}
           {props.esOferta && <span className="tarjeta-badge-oferta">Oferta</span>}
           <span className="tarjeta-precio">
-            ${Number(props.precio).toLocaleString('es-AR')}
+            {props.precio ? `$${Number(props.precio).toLocaleString('es-AR')}` : "Consultar precio"}
           </span>
         </div>
         <div className="tarjeta-info">

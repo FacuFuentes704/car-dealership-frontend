@@ -80,7 +80,7 @@ function DetalleVehiculo() {
         <div className="detalle-info">
           <h1>{vehiculo.brand} {vehiculo.model}</h1>
           <p className="detalle-precio">
-            ${Number(vehiculo.price).toLocaleString('es-AR')}
+            {vehiculo.price ? `$${Number(vehiculo.price).toLocaleString('es-AR')}` : "Consultar precio"}
           </p>
 
           <div className="detalle-specs">

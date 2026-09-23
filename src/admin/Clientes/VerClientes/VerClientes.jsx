@@ -58,7 +58,7 @@ function VerCliente() {
                 className="interes-item"
               >
                 <strong>{interes.vehicle.brand} {interes.vehicle.model}</strong>
-                <span>{interes.vehicle.year} — ${Number(interes.vehicle.price).toLocaleString('es-AR')}</span>
+                <span>{interes.vehicle.year} — {interes.vehicle.price ? `$${Number(interes.vehicle.price).toLocaleString('es-AR')}` : "Consultar precio"}</span>
                 <span className={`badge badge-${interes.vehicle.status}`}>{TRADUCCIONES_STATUS_VEHICULO[interes.vehicle.status]}</span>
               </Link>
             ))}
