@@ -15,7 +15,7 @@ function DetalleVehiculo() {
   const [fotoActiva, setFotoActiva] = useState(0)
 
   useEffect(() => {
-    fetch(`${API_URL}/vehicles/${id}/`)
+    fetch(`${API_URL}/vehicles/${id}`)
       .then(res => {
         if (!res.ok) {
           return res.json().then(data => {
