@@ -23,7 +23,7 @@ function TarjetaVehiculo(props) {
           <h3>{props.marca} {props.modelo}</h3>
           <p className="tarjeta-specs">
             <span>{props.year}</span>
-            <span>{Number(props.km).toLocaleString('es-AR')} km</span>
+            <span>{props.km != null ? `${Number(props.km).toLocaleString('es-AR')} km` : "-"}</span>
           </p>
         </div>
       </article>

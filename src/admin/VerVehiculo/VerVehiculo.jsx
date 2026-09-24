@@ -51,7 +51,7 @@ function VerVehiculo() {
           <p><span>Precio Permuta</span><strong>{vehiculo.price ? `$${Number(vehiculo.price).toLocaleString('es-AR')}` : "Consultar precio"}</strong></p>
           <p><span>Precio Contado</span><strong>{vehiculo.price_cash ? `$${Number(vehiculo.price_cash).toLocaleString('es-AR')}` : "-"}</strong></p>
           <p><span>Año</span><strong>{vehiculo.year}</strong></p>
-          <p><span>Km</span><strong>{Number(vehiculo.km).toLocaleString('es-AR')}</strong></p>
+          <p><span>Km</span><strong>{vehiculo.km != null ? Number(vehiculo.km).toLocaleString('es-AR') : "-"}</strong></p>
           <p><span>Color</span><strong>{vehiculo.color || "-"}</strong></p>
           <p><span>Combustible</span><strong>{TRADUCCIONES_FUEL_TYPE[vehiculo.fuel_type]}</strong></p>
           <p><span>Transmisión</span><strong>{TRADUCCIONES_TRANSMISSION[vehiculo.transmission]}</strong></p>

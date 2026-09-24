@@ -19,7 +19,7 @@ function FormularioVehiculo() {
     brand: "",
     model: "",
     year: "",
-    price: "",
+    price_internal: "",
     price_cash: "",
     km: "",
     color: "",
@@ -33,6 +33,7 @@ function FormularioVehiculo() {
     is_active: true,
     features: crearFeaturesPorDefecto()
   })
+  const [mostrarPrecioPublico, setMostrarPrecioPublico] = useState(true)
   const [fotos, setFotos] = useState([])
   const [cargando, setCargando] = useState(esEdicion)
   const [guardando, setGuardando] = useState(false)
@@ -48,9 +49,9 @@ function FormularioVehiculo() {
           brand: vehiculo.brand,
           model: vehiculo.model,
           year: vehiculo.year,
-          price: vehiculo.price || "",
+          price_internal: vehiculo.price_internal ?? "",
           price_cash: vehiculo.price_cash || "",
-          km: vehiculo.km,
+          km: vehiculo.km ?? "",
           color: vehiculo.color || "",
           plate: vehiculo.plate || "", 
           description: vehiculo.description || "",
@@ -62,6 +63,7 @@ function FormularioVehiculo() {
           is_active: vehiculo.is_active,
           features: { ...crearFeaturesPorDefecto(), ...(vehiculo.features || {}) }
         })
+        setMostrarPrecioPublico(Boolean(vehiculo.price))
         setFotos(vehiculo.photos || [])
         setCargando(false)
       })
@@ -105,9 +107,12 @@ function FormularioVehiculo() {
       body: JSON.stringify({
         ...datos,
         year: Number(datos.year),
-        price: datos.price ? Number(datos.price) : null,
+        price: mostrarPrecioPublico
+          ? (datos.price_internal ? Number(datos.price_internal) : null)
+          : null,
+        price_internal: datos.price_internal ? Number(datos.price_internal) : null,
         price_cash: datos.price_cash ? Number(datos.price_cash) : null,
-        km: Number(datos.km)
+        km: datos.km === "" ? null : Number(datos.km)
       })
     })
       .then(res => {
@@ -228,13 +233,35 @@ function FormularioVehiculo() {
           </div>
 
           <div className="form-campo">
-            <label>Precio Permuta</label>
+            <label>Precio Permuta (uso interno)</label>
             <input
               type="number"
-              value={datos.price}
-              onChange={(e) => manejarCambio("price", e.target.value)}
+              value={datos.price_internal}
+              onChange={(e) => manejarCambio("price_internal", e.target.value)}
             />
           </div>
+
+          <div className="form-campo form-checkbox">
+            <label>
+              <input
+                type="checkbox"
+                checked={mostrarPrecioPublico}
+                onChange={(e) => setMostrarPrecioPublico(e.target.checked)}
+              />
+              Mostrar precio al público
+            </label>
+          </div>
+
+          {mostrarPrecioPublico && (
+            <div className="form-campo">
+              <label>Precio Permuta</label>
+              <input
+                type="number"
+                value={datos.price_internal}
+                disabled
+              />
+            </div>
+          )}
 
           <div className="form-campo">
             <label>Precio Contado</label>

@@ -49,7 +49,7 @@ function PlanillaVehiculos() {
               <td>{v.model}</td>
               <td>{v.year}</td>
               <td>{v.plate || "-"}</td>
-              <td>{Number(v.km).toLocaleString('es-AR')}</td>
+              <td>{v.km != null ? Number(v.km).toLocaleString('es-AR') : "-"}</td>
               <td>{v.price ? `$${Number(v.price).toLocaleString('es-AR')}` : "Consultar precio"}</td>
               <td>{v.price_cash ? `$${Number(v.price_cash).toLocaleString('es-AR')}` : "-"}</td>
               <td>{v.status === "available" ? "Disponible" : "Reservado"}</td>

@@ -85,7 +85,7 @@ function DetalleVehiculo() {
 
           <div className="detalle-specs">
             <div><span>Año</span><strong>{vehiculo.year}</strong></div>
-            <div><span>Km</span><strong>{Number(vehiculo.km).toLocaleString('es-AR')}</strong></div>
+            <div><span>Km</span><strong>{vehiculo.km != null ? Number(vehiculo.km).toLocaleString('es-AR') : "-"}</strong></div>
             <div><span>Combustible</span><strong>{TRADUCCIONES_FUEL_TYPE[vehiculo.fuel_type]}</strong></div>
             <div><span>Transmisión</span><strong>{TRADUCCIONES_TRANSMISSION[vehiculo.transmission]}</strong></div>
           </div>
