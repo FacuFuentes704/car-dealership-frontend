@@ -7,7 +7,10 @@ function useEnPantalla() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entradas) => {
-        setVisible(entradas[0].isIntersecting)
+        if (entradas[0].isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
       },
       { threshold: 0.2 }
     )
