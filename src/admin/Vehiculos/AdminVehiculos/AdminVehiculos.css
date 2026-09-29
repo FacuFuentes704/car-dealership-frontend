@@ -37,11 +37,22 @@
   color: var(--primario);
 }
 
+.tabla-admin-scroll {
+  overflow-x: auto;
+}
+
 .tabla-admin {
   width: 100%;
   border-collapse: collapse;
   background-color: var(--card-bg);
   border: 1px solid var(--border);
+}
+
+.tabla-admin td:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
 }
 
 .tabla-admin th {

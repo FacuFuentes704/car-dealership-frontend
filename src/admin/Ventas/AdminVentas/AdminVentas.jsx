@@ -83,6 +83,7 @@ function AdminVentas() {
       ) : ventas.length === 0 ? (
         <p className="sin-resultados">No se encontraron ventas.</p>
       ) : (
+        <div className="tabla-admin-scroll">
         <table className="tabla-admin">
           <thead>
             <tr>
@@ -111,6 +112,7 @@ function AdminVentas() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   )

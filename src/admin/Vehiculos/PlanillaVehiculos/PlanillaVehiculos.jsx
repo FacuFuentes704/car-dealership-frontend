@@ -8,7 +8,7 @@ function PlanillaVehiculos() {
   const [cargando, setCargando] = useState(true)
 
   useEffect(() => {
-    fetchConToken(`${API_URL}/vehicles/admin?only_active=true`)
+    fetchConToken(`${API_URL}/vehicles/admin?only_active=true&limit=100`)
       .then(res => res.json())
       .then(datos => {
         const noVendidos = datos.filter((v) => v.status !== "sold")

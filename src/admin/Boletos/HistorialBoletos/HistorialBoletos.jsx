@@ -78,6 +78,7 @@ function HistorialBoletos() {
       ) : boletos.length === 0 ? (
         <p className="sin-resultados">No se encontraron boletos generados.</p>
       ) : (
+        <div className="tabla-admin-scroll">
         <table className="tabla-admin">
           <thead>
             <tr>
@@ -102,6 +103,7 @@ function HistorialBoletos() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   )

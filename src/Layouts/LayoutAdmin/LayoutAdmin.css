@@ -83,6 +83,60 @@
   overflow-x: auto;
 }
 
+.sidebar-toggle-mobile {
+  display: none;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle-mobile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 110;
+    width: 40px;
+    height: 40px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+
+  .sidebar.sidebar-abierto {
+    transform: translateX(0);
+  }
+
+  .contenido-admin {
+    padding: 72px 16px 24px;
+  }
+}
+
 @media print {
   .sidebar {
     display: none;

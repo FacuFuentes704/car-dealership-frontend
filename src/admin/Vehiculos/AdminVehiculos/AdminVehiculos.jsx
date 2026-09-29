@@ -25,7 +25,7 @@ function AdminVehiculos() {
   }, [busqueda])
 
   useEffect(() => {
-    let url = `${API_URL}/vehicles/admin?only_active=${soloActivos}`
+    let url = `${API_URL}/vehicles/admin?only_active=${soloActivos}&limit=100`
     if (statusFiltro) url += `&status=${statusFiltro}`
     if (busquedaDebounced) url += `&search=${busquedaDebounced}`
 
@@ -130,6 +130,7 @@ function AdminVehiculos() {
       {vehiculos.length === 0 ? (
         <p className="sin-resultados">No se encontraron vehículos.</p>
       ) : (
+        <div className="tabla-admin-scroll">
         <table className="tabla-admin">
           <thead>
             <tr>
@@ -175,6 +176,7 @@ function AdminVehiculos() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   )

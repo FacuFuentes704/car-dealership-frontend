@@ -31,7 +31,7 @@ function PanelDeVehiculos({ condition, offer }) {
 
   useEffect(() => {
     setCargando(true)
-    let url = `${API_URL}/vehicles/?status=available`
+    let url = `${API_URL}/vehicles/?status=available&limit=100`
     if (condition) url += `&condition=${condition}`
     if (offer) url += `&is_offer=true`
     if (busquedaDebounced) url += `&search=${busquedaDebounced}`
