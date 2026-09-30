@@ -44,4 +44,10 @@
   .tabla-planilla {
     color: black;
   }
+
+  .tabla-planilla th,
+  .tabla-planilla td {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
 }

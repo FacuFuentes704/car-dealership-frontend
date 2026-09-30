@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { API_URL } from '../../../config'
 import { fetchConToken } from '../../../utils/fetchConToken'
+import BuscadorSelector from '../../../components/BuscadorSelector/BuscadorSelector'
 import '../../formularios.css'
 import './FormularioVenta.css'
 
@@ -26,7 +27,7 @@ function FormularioVenta() {
 
   useEffect(() => {
     const promesas = [
-      fetchConToken(`${API_URL}/vehicles/admin?only_active=true&status=available`).then(res => res.json()),
+      fetchConToken(`${API_URL}/vehicles/admin?only_active=true&status=available&limit=500`).then(res => res.json()),
       fetchConToken(`${API_URL}/clients/?only_active=true`).then(res => res.json())
     ]
 
@@ -73,6 +74,12 @@ function FormularioVenta() {
   function manejarSubmit(e) {
     e.preventDefault()
     setError(null)
+
+    if (!datos.vehicle_id || !datos.client_id) {
+      setError("Elegí un vehículo y un cliente de la lista")
+      return
+    }
+
     setGuardando(true)
 
     const url = esEdicion
@@ -116,34 +123,29 @@ function FormularioVenta() {
       <form onSubmit={manejarSubmit}>
         <div className="form-campo">
           <label>Vehículo</label>
-          <select
+          <BuscadorSelector
+            items={vehiculosDisponibles}
+            getId={(v) => v.id}
+            getLabel={(v) => {
+              const precio = v.price_internal ?? v.price
+              return `${v.brand} ${v.model} (${v.year}) — Patente: ${v.plate || "sin patente"} — ${precio ? `$${Number(precio).toLocaleString('es-AR')}` : "Consultar precio"}`
+            }}
             value={datos.vehicle_id}
-            onChange={(e) => manejarCambio("vehicle_id", e.target.value)}
-            required
-          >
-            <option value="">Elegir vehículo...</option>
-            {vehiculosDisponibles.map((v) => (
-              <option key={v.id} value={v.id}>
-                {v.brand} {v.model} ({v.year}) — Patente: {v.plate || "sin patente"} — {v.price ? `$${Number(v.price).toLocaleString('es-AR')}` : "Consultar precio"}
-              </option>
-            ))}
-          </select>
+            onChange={(id) => manejarCambio("vehicle_id", id)}
+            placeholder="Buscar por marca, modelo o patente..."
+          />
         </div>
 
         <div className="form-campo">
           <label>Cliente</label>
-          <select
+          <BuscadorSelector
+            items={clientes}
+            getId={(c) => c.id}
+            getLabel={(c) => `${c.name} — Tel: ${c.phone || "sin teléfono"}`}
             value={datos.client_id}
-            onChange={(e) => manejarCambio("client_id", e.target.value)}
-            required
-          >
-            <option value="">Elegir cliente...</option>
-            {clientes.map((c) => (
-              <option key={c.id} value={c.id}>
-                {c.name} — Tel: {c.phone || "sin teléfono"}
-              </option>
-            ))}
-          </select>
+            onChange={(id) => manejarCambio("client_id", id)}
+            placeholder="Buscar por nombre..."
+          />
         </div>
 
         <div className="form-campo">
