@@ -36,6 +36,7 @@ function PlanillaVehiculos() {
             <th>Modelo</th>
             <th>Año</th>
             <th>Patente</th>
+            <th>Fecha de Alta</th>
             <th>Km</th>
             <th>Precio Permuta</th>
             <th>Precio Contado</th>
@@ -49,8 +50,9 @@ function PlanillaVehiculos() {
               <td>{v.model}</td>
               <td>{v.year}</td>
               <td>{v.plate || "-"}</td>
+              <td>{v.created_at ? new Date(v.created_at).toLocaleDateString('es-AR') : "-"}</td>
               <td>{v.km != null ? Number(v.km).toLocaleString('es-AR') : "-"}</td>
-              <td>{v.price ? `$${Number(v.price).toLocaleString('es-AR')}` : "Consultar precio"}</td>
+              <td>{v.price_internal ? `$${Number(v.price_internal).toLocaleString('es-AR')}` : "-"}</td>
               <td>{v.price_cash ? `$${Number(v.price_cash).toLocaleString('es-AR')}` : "-"}</td>
               <td>{v.status === "available" ? "Disponible" : "Reservado"}</td>
             </tr>

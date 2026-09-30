@@ -1,0 +1,57 @@
+.buscador-selector {
+  position: relative;
+}
+
+.buscador-selector input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.buscador-selector input:focus {
+  outline: none;
+  border-color: var(--primario);
+}
+
+.buscador-selector-lista {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 260px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.buscador-selector-lista li {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.buscador-selector-lista li:hover {
+  background-color: var(--primario);
+  color: white;
+}
+
+.buscador-selector-vacio {
+  opacity: 0.6;
+  cursor: default !important;
+}
+
+.buscador-selector-vacio:hover {
+  background-color: transparent !important;
+  color: var(--text) !important;
+}

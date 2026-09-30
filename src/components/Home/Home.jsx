@@ -32,7 +32,7 @@ function Home() {
         className={`catalogo-section container ${visibleCatalogo ? 'visible' : ''}`}
       >
         <h2 className="catalogo-title">Vehículos disponibles</h2>
-        <PanelDeVehiculos />
+        <PanelDeVehiculos condition="used" />
       </section>
 
       <PorQueElegirnos />
