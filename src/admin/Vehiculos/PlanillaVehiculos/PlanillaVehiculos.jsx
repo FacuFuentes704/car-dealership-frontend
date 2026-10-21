@@ -41,6 +41,7 @@ function PlanillaVehiculos() {
             <th>Marca</th>
             <th>Modelo</th>
             <th>Año</th>
+            <th>Color</th>
             <th>Patente</th>
             <th>Km</th>
             <th>Precio Permuta</th>
@@ -55,6 +56,7 @@ function PlanillaVehiculos() {
               <td>{v.brand}</td>
               <td>{v.model}</td>
               <td>{v.year}</td>
+              <td>{v.color || "-"}</td>
               <td>{v.plate || "-"}</td>
               <td>{(v.km_internal ?? v.km) != null ? Number(v.km_internal ?? v.km).toLocaleString('es-AR') : "-"}</td>
               <td>{v.price_internal ? `$${Number(v.price_internal).toLocaleString('es-AR')}` : "-"}</td>
