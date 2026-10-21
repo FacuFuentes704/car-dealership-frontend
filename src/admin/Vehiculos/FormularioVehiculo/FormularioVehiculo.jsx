@@ -348,6 +348,7 @@ function FormularioVehiculo() {
             >
               <option value="available">Disponible</option>
               <option value="reserved">Reservado</option>
+              <option value="unpublished">Sin publicar (solo planilla interna)</option>
               <option value="sold">Vendido</option>
             </select>
           </div>

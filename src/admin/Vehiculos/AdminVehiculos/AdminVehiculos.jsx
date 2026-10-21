@@ -114,6 +114,7 @@ function AdminVehiculos() {
           <option value="">Todos los estados</option>
           <option value="available">Disponible</option>
           <option value="reserved">Reservado</option>
+          <option value="unpublished">Sin publicar</option>
           <option value="sold">Vendido</option>
         </select>
 

@@ -10,6 +10,7 @@ export const TRADUCCIONES_PAYMENT_METHOD = {
 export const TRADUCCIONES_STATUS_VEHICULO = {
   available: "Disponible",
   reserved: "Reservado",
+  unpublished: "Sin publicar",
   sold: "Vendido"
 }
 
