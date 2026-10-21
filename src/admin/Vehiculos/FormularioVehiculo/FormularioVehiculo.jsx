@@ -34,6 +34,7 @@ function FormularioVehiculo() {
     features: crearFeaturesPorDefecto()
   })
   const [mostrarPrecioPublico, setMostrarPrecioPublico] = useState(true)
+  const [mostrarKmPublico, setMostrarKmPublico] = useState(true)
   const [fotos, setFotos] = useState([])
   const [cargando, setCargando] = useState(esEdicion)
   const [guardando, setGuardando] = useState(false)
@@ -51,7 +52,7 @@ function FormularioVehiculo() {
           year: vehiculo.year,
           price_internal: vehiculo.price_internal ?? "",
           price_cash: vehiculo.price_cash || "",
-          km: vehiculo.km ?? "",
+          km: vehiculo.km_internal ?? vehiculo.km ?? "",
           color: vehiculo.color || "",
           plate: vehiculo.plate || "", 
           description: vehiculo.description || "",
@@ -64,6 +65,7 @@ function FormularioVehiculo() {
           features: { ...crearFeaturesPorDefecto(), ...(vehiculo.features || {}) }
         })
         setMostrarPrecioPublico(Boolean(vehiculo.price))
+        setMostrarKmPublico(vehiculo.km != null)
         setFotos(vehiculo.photos || [])
         setCargando(false)
       })
@@ -112,7 +114,8 @@ function FormularioVehiculo() {
           : null,
         price_internal: datos.price_internal ? Number(datos.price_internal) : null,
         price_cash: datos.price_cash ? Number(datos.price_cash) : null,
-        km: datos.km === "" ? null : Number(datos.km)
+        km: mostrarKmPublico && datos.km !== "" ? Number(datos.km) : null,
+        km_internal: datos.km === "" ? null : Number(datos.km)
       })
     })
       .then(res => {
@@ -280,6 +283,17 @@ function FormularioVehiculo() {
               value={datos.km}
               onChange={(e) => manejarCambio("km", e.target.value)}
             />
+          </div>
+
+          <div className="form-campo form-checkbox">
+            <label>
+              <input
+                type="checkbox"
+                checked={mostrarKmPublico}
+                onChange={(e) => setMostrarKmPublico(e.target.checked)}
+              />
+              Mostrar kilómetros al público
+            </label>
           </div>
 
           <div className="form-campo">
