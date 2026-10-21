@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { API_URL } from '../../../config'
 import { fetchConToken } from '../../../utils/fetchConToken'
+import { TRADUCCIONES_STATUS_VEHICULO } from '../../traducciones'
 import './PlanillaVehiculos.css'
 
 function PlanillaVehiculos() {
@@ -8,7 +9,7 @@ function PlanillaVehiculos() {
   const [cargando, setCargando] = useState(true)
 
   useEffect(() => {
-    fetchConToken(`${API_URL}/vehicles/admin?only_active=true&limit=500`)
+    fetchConToken(`${API_URL}/vehicles/admin?only_active=true&condition=used&limit=500`)
       .then(res => res.json())
       .then(datos => {
         const noVendidos = datos.filter((v) => v.status !== "sold")
@@ -40,6 +41,7 @@ function PlanillaVehiculos() {
             <th>Marca</th>
             <th>Modelo</th>
             <th>Año</th>
+            <th>Color</th>
             <th>Patente</th>
             <th>Km</th>
             <th>Precio Permuta</th>
@@ -54,11 +56,12 @@ function PlanillaVehiculos() {
               <td>{v.brand}</td>
               <td>{v.model}</td>
               <td>{v.year}</td>
+              <td>{v.color || "-"}</td>
               <td>{v.plate || "-"}</td>
               <td>{(v.km_internal ?? v.km) != null ? Number(v.km_internal ?? v.km).toLocaleString('es-AR') : "-"}</td>
               <td>{v.price_internal ? `$${Number(v.price_internal).toLocaleString('es-AR')}` : "-"}</td>
               <td>{v.price_cash ? `$${Number(v.price_cash).toLocaleString('es-AR')}` : "-"}</td>
-              <td>{v.status === "available" ? "Disponible" : "Reservado"}</td>
+              <td>{TRADUCCIONES_STATUS_VEHICULO[v.status]}</td>
               <td>{v.created_at ? new Date(v.created_at).toLocaleDateString('es-AR') : "-"}</td>
             </tr>
           ))}

@@ -91,6 +91,11 @@
   color: #1a1a1a;
 }
 
+.badge-unpublished {
+  background-color: #6b7280;
+  color: white;
+}
+
 .badge-sold {
   background-color: var(--vendido);
   color: white;
